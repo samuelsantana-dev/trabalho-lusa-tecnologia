@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botões de PR</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container-botoes-de-pr">
+        <div class="button-list-botoes-de-pr">
+            <div class="button-item-botoes-de-pr">
+                <p>Adicionar às guias personalizadas</p>
+                 <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round">mostrar</span>
+                </label>
+            </div>
+            <div class="button-item-botoes-de-pr">
+                <span>Agendar</span>
+                 <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round">mostrar</span>
+                </label>
+            </div>
+            <div class="button-item-botoes-de-pr">
+                <p>Notas</p>
+                 <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round">mostrar</span>
+                </label>
+            </div>
+            <div class="button-item-botoes-de-pr">
+                <span>Lembrete</span>
+                 <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round">mostrar</span>
+                </label>
+            </div>
+            <div class="button-item-botoes-de-pr">
+                <span>Resposta Rápida</span>
+                 <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round">mostrar</span>
+                </label>
+            </div>
+            <div class="button-item-botoes-de-pr">
+                <span>Afirmativo</span>
+                 <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round">mostrar</span>
+                </label>    
+            </div>
+            <div class="button-item-botoes-de-pr">
+                <span>Perfil</span>
+                 <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round">mostrar</span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.querySelectorAll('.switch input').forEach(input => {
+            input.addEventListener('change', function() {
+                const slider = this.nextElementSibling;
+                slider.textContent = this.checked ? 'mostrar' : 'esconder';
+            });
+        });
+    </script>
+</body>
+</html>

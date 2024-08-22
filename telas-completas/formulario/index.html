@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>teste</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="modal">
+        <div class="modal-header">
+            <h2>Adicionar modelo de mensagem</h2>
+           
+        </div>
+        <div class="modal-content">
+            <form>
+                <div>
+                    <div class="form-group">
+                        <label for="nomeModelo">Nome do modelo</label>
+                        <input type="text" class="nomeModelo" placeholder="Mensagem Modelo" required>
+                    </div>
+                    <div>
+                        <p>Tipo de modelo</p>
+                        <label>
+                            <input type="radio" name="tipoModelo" value="simples" checked>
+                            Simples
+                        </label>
+                        <label>
+                            <input type="radio" name="tipoModelo" value="personalizada">
+                            Personalizada
+                        </label>
+                    </div>
+                    <div>
+                        <p>Enviar mensagem para</p>
+                        <label>
+                            <input type="radio" name="enviarPara" value="individuos" checked>
+                            Indivíduos
+                        </label>
+                        <label>
+                            <input type="radio" name="enviarPara" value="grupos">
+                            Grupos
+                        </label>
+                        <label>
+                            <input type="radio" name="enviarPara" value="transmissao">
+                            Transmissão
+                        </label>
+                        <label>
+                            <input type="radio" name="enviarPara" value="abas">
+                            Abas
+                        </label>
+                        <label>
+                            <input type="radio" name="enviarPara" value="rotulos">
+                            Rótulos
+                        </label>
+                    </div>
+
+                    <div class="form-group-ativo">
+                        <div>
+                            <p>Ativo / desativação</p>
+                        </div>
+                        <div>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider round">Ativo</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group">
+                        <label for="mensagem">Mensagem</label>
+                        <textarea class="textarea"  id="mensagem" placeholder="Adicione uma mensagem" required></textarea>
+                        <div class="menu">
+                            <div class="menu-item">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Adobe_Illustrator_CC_icon.svg/2048px-Adobe_Illustrator_CC_icon.svg.png" alt="AI">
+                            </div>
+                            <div class="menu-item">B</div>
+                            <div class="menu-item">I</div>
+                            <div class="menu-item">S</div>
+                            <div class="menu-item">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Gold_coin_icon.png/768px-Gold_coin_icon.png" alt="Coin">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button-item-botoes-de-pr">
+                        <label>
+                            Enviar produtos
+                        </label>
+                         <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    <div class="button-item-botoes-de-pr">
+                        <label>
+                            Enviar anexos
+                        </label>
+                         <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

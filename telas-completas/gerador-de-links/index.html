@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+        
+    <div class="form-search">
+        <p>Gere um link personalizado WhatsApp com uma mensagem predefinida</p>
+        <div class="filter-options">
+            <p onclick="mapDddPais()">Clique aqui para carregar os paises *</p>
+            <p onclick="mapDddPais()">Código do País *</p>
+            <div class="input-group">
+                <select title="Selecione" id="codigoPais" class="input-group-select"  required>
+                </select>
+                <input type="number" id="numero" class="input-group-input" placeholder="123456789" required />
+            </div>
+        </div>
+        <div>
+            <div>
+                <p>Mensagem *</p>
+                <label class="label">
+                    <input type="text" id="mensagem" class="input-bordas" placeholder="Digite sua mensagem" required>
+                    <span class="focus-border"> <i></i> </span>
+                </label>
+            </div>
+        </div>
+        <div class="divInputButton">
+            <div class="divNameButton">
+                <button class="button-base rounded-button" type="reset" onclick="resetar()">Redefinir</button>
+                <button class="button-base custom-button" type="submit" onclick="geradorDeLinks()">Obter Link</button>
+            </div>
+        </div>
+        <div id="linkGerado" style="margin-top: 20px;"></div>
+    </div>
+
+   <script src="index.js"></script>
+</body>
+</html>

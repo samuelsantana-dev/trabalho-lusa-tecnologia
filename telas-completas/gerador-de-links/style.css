@@ -1,0 +1,66 @@
+
+/*gerador-de-link*/
+
+.form-search {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    border-bottom: 1px solid #e0e0e0;
+}
+.input-group {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.input-group-select {
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    outline: none;
+    background-color: #fff;
+    border-right: 1px solid #ccc;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.input-group-input {
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    outline: none;
+    flex: 1;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.input-group input::placeholder {
+    color: #aaa;
+}
+
+.label { 
+    float: left; 
+    width: 100%; 
+    margin-bottom: 25px; 
+    position: relative;
+}
+
+.input-bordas{
+    font: 12px/17px "Lato", Arial, sans-serif; 
+    color: #333; 
+    width: 100%; 
+    box-sizing: border-box; 
+    letter-spacing: 1px;
+    border: 1px solid #ccc; 
+    border-radius: 10px;
+    padding: 8px; 
+    transition: 0.4s;
+}
+
+.divInputButton{
+    display: flex;
+    flex-direction: column;
+  }
