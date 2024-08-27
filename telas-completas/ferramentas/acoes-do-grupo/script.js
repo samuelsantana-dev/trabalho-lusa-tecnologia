@@ -1,32 +1,72 @@
-// Botões
-const buttonGrupoDeClones = document.getElementById('btn-grupo-de-clones');
-const buttonDestruirGrupos = document.getElementById('btn-destruir-grupos');
-const buttonGruposDeJuncaoEmMassa = document.getElementById('btn-grupos-de-juncao-em-massa');
-const buttonDuplicataFinder = document.getElementById('btn-duplicata-finder');
-const buttonFecharDivs = document.getElementById('fechar-div-diplicata-finder');	
+// Grupo de clones
+const btnGruposDeClones = document.getElementById('btn-grupo-de-clones');
+const btnDestruirGruposDeClones = document.getElementById('btn-destruir-grupos-de-clones');
+
+// Botoes de grupo de juncao em massa
+const btnGruposDeJuncao = document.getElementById('btn-grupos-de-juncao-em-massa');
+const btnDestruirGruposDeJuncao = document.getElementById('btn-destruir-grupos-juncao-em-massa');
+
+// Botões de Ação
+const btnDuplicataFinder = document.getElementById('btn-duplicata-finder');
+const btnDestruirGrupos = document.getElementById('btn-destruir-grupos');
+
+// Botões de Fechamento
+const btnFecharDuplicataFinder = document.getElementById('btn-fechar-duplicata-finder');
+const btnFecharDestruirGrupos = document.getElementById('btn-fechar-destruir-grupos');
+
 // Divs
-const divDuplicataFinder = document.querySelector('.div-duplicata-finder');
-const divGrupoDeClones = document.querySelector('.div-grupo-de-clones');
-const divDestruirGrupos = document.querySelector('.div-destruir-grupos');
-const divGruposDeJuncaoEmMassa = document.querySelector('.div-grupos-de-juncao-em-massa');
+const divDuplicataFinder = document.querySelector('#div-duplicata-finder');
+const divDestruirGrupos = document.querySelector('#div-destruir-grupos');
+const divGruposDeJuncaoEmMassa = document.querySelector('#div-grupo-de-juncao-em-massa');
+const divGruposDeClones = document.querySelector('#div-grupo-de-clones');
 
 // Função para mostrar uma div e esconder as outras
-function mostrarDiv(div){
-    div.classList.add('mostrar')
-    // div.classList.remove('mostrar')
-    div.classList.remove('d-none');
+function mostrarElemento(elemento) {
+    elemento.classList.add('mostrar');
+    elemento.classList.remove('d-none');
 }
 
-function removerDiv(div){
-    div.classList.add('d-none')
-    div.classList.remove('mostrar')
+function esconderElemento(elemento) {
+    elemento.classList.add('d-none');
+    elemento.classList.remove('mostrar');
 }
 
-buttonDuplicataFinder.addEventListener('click', () => {
-    console.log('duplicata finder')
-    mostrarDiv(divDuplicataFinder);
+// Grupo de clones
+btnGruposDeClones.addEventListener('click', () => {
+    mostrarElemento(divGruposDeClones)
+})
+
+btnDestruirGruposDeClones.addEventListener('click', () => {
+    esconderElemento(divGruposDeClones)
+})
+
+// Div de juncao em massa
+btnGruposDeJuncao.addEventListener('click', () => {
+    mostrarElemento(divGruposDeJuncaoEmMassa)
+})
+
+btnDestruirGruposDeJuncao.addEventListener('click', () => {
+    esconderElemento(divGruposDeJuncaoEmMassa)
+})
+
+// Ações de Destruir Grupos
+btnDestruirGrupos.addEventListener('click', () => {
+    console.log(`desturir grupo`)
+    mostrarElemento(divDestruirGrupos);
 });
 
-buttonFecharDivs.addEventListener('click', () => {
-    removerDiv(divDuplicataFinder)
-})
+btnFecharDestruirGrupos.addEventListener('click', () => {
+    console.log(`desturir grupo`)
+    esconderElemento(divDestruirGrupos);
+});
+
+// Ações de Duplicata Finder
+btnDuplicataFinder.addEventListener('click', () => {
+    console.log('Duplicata Finder ativado');
+    mostrarElemento(divDuplicataFinder);
+});
+
+btnFecharDuplicataFinder.addEventListener('click', () => {
+    console.log(`duplicata finder`)
+    esconderElemento(divDuplicataFinder);
+});
