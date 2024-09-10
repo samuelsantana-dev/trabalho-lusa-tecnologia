@@ -22,13 +22,13 @@ const divGruposDeClones = document.querySelector('#div-grupo-de-clones');
 
 // Função para mostrar uma div e esconder as outras
 function mostrarElemento(elemento) {
-    elemento.classList.add('mostrar');
+    elemento.classList.add('d-block');
     elemento.classList.remove('d-none');
 }
 
 function esconderElemento(elemento) {
     elemento.classList.add('d-none');
-    elemento.classList.remove('mostrar');
+    elemento.classList.remove('d-block');
 }
 
 // Grupo de clones
@@ -51,12 +51,10 @@ btnDestruirGruposDeJuncao.addEventListener('click', () => {
 
 // Ações de Destruir Grupos
 btnDestruirGrupos.addEventListener('click', () => {
-    console.log(`desturir grupo`)
     mostrarElemento(divDestruirGrupos);
 });
 
 btnFecharDestruirGrupos.addEventListener('click', () => {
-    console.log(`desturir grupo`)
     esconderElemento(divDestruirGrupos);
 });
 
@@ -70,3 +68,26 @@ btnFecharDuplicataFinder.addEventListener('click', () => {
     console.log(`duplicata finder`)
     esconderElemento(divDuplicataFinder);
 });
+
+// Criando um option no select
+function teste(){
+    let teste = ['teste um', 'teste dois', 'tewteTres'];
+    return teste
+}
+
+const inputSelecionarGrupos = document.querySelector('#opcao-selecionar-grupos-de-clones');
+inputSelecionarGrupos.addEventListener('click', () => {
+    if (inputSelecionarGrupos.options.length === 0) {
+        console.log('selecionado os grupos');
+        const testeFunction = teste();
+        console.log('teste', testeFunction);
+
+        testeFunction.forEach(element => {
+            const option = document.createElement('option');
+            option.classList.add('option');
+            option.innerText = element;
+            inputSelecionarGrupos.appendChild(option);
+        });
+    }
+})
+

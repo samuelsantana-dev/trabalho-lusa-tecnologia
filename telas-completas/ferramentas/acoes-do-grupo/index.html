@@ -7,13 +7,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
     <style>
-        .mostrar{
-            display: block;
+          .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1050;
+            display: none;
         }
     </style>
 </head>
 <body class="bg-light">
-    <div class="container d-flex flex-wrap justify-content-center mt-5" >
+    <div class="container d-flex flex-wrap justify-content-center mt-5">
         <button id="btn-grupo-de-clones" class="btn btn-outline-secondary text-center mx-2 my-2 d-flex flex-column align-items-center" style="width: 150px;">
             <i class="fas fa-file-alt fa-2x mb-2"></i>
             Grupo de clones
@@ -39,7 +44,7 @@
     </div>
 
     <!-- TELA DE DUPLICATA FINDER -->
-    <div id="div-duplicata-finder" class="card p-3 shadow d-none" style="max-width: 400px; border-radius: 10px;">
+    <div id="div-duplicata-finder" class="card p-3 shadow d-none popup" style="max-width: 400px; border-radius: 10px;">
         <div class="card-body">
             <h5 class="card-title">Duplicata Finder</h5>
             <input type="text" class="form-control mb-3 rounded-pill" placeholder="Digite aqui para pesquisar">
@@ -80,88 +85,17 @@
         </div>
     </div>
     <!--Destruir grupo-->
-    <div id="div-destruir-grupos">
-        <div class="card p-3 shadow" style="width: 400px; border-radius: 10px;">
-            <div class="card-body">
-                <div class="d-flex flex-column mb-3">
-                    <h5 class="card-title">Selecione o grupo *</h5>
-                    <select class="form-select mb-3" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
-                </div>
-                <div>
-                    <button id="btn-fechar-destruir-grupos" type="button" class="btn btn-success">Fechar</button>
-                    <button type="button" class="btn btn-success">Destruir</button>
-                </div>
-            </div>
+        <div  id="div-destruir-grupos"  class="card p-3 shadow d-none" style="width: 400px; border-radius: 10px;">
         </div>
-    </div>
 
     <!--Grupos de juncao em massa-->
-    <div id="div-grupo-de-juncao-em-massa">
-        <div class="card shadow-sm" style="max-width: 450px;">
-            <div class="card-body">
-                <h5 class="card-title">Grupos de junção em massa</h5>
-    
-                <div class="mb-3">
-                    <label for="juncaoMassa" class="form-label fw-bold">Junção em massa <span class="text-danger">*</span></label>
-                    <textarea class="form-control" id="juncaoMassa" placeholder="Digite a junção em massa" rows="3"></textarea>
-                </div>
-    
-                <div class="form-check form-switch mb-3">
-                    <input class="form-check-input" type="checkbox" id="atrasoDinamico">
-                    <label class="form-check-label" for="atrasoDinamico">Atraso dinâmico</label>
-                </div>
-    
-                <div class="row g-2 align-items-center">
-                    <div class="col-auto">
-                        <label for="corrigirAtraso" class="col-form-label">Corrigir atraso:</label>
-                    </div>
-                    <div class="col-auto">
-                        <select class="form-select" id="corrigirAtraso">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                        </select>
-                    </div>
-                    <div class="col-auto">
-                        <span class="form-text">Segundos</span>
-                    </div>
-                </div>
-    
-                <div id="btn-destruir-grupos-juncao-em-massa" class="d-flex justify-content-end mt-3 gap-2">
-                    <button class="btn btn-outline-secondary">Fechar</button>
-                    <button class="btn btn-primary">Juntar</button>
-                </div>
-            </div>
+        <div  id="div-grupo-de-juncao-em-massa" class="card shadow-sm d-none" style="max-width: 450px;">
         </div>
-    </div>
 
     <!--Grupo de clones-->
-    <div id="div-grupo-de-clones">
-        <div class="card p-3 shadow" style="width: 400px; border-radius: 10px;">
-            <div class="card-body">
-                <div class="d-flex flex-column align-items-center mb-3">
-                    <h5 class="card-title">Grupo de clones</h5>
-                    <select class="form-select mb-3" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
-                    <input type="text" class="form-control mb-3 rounded-pill" placeholder="Digite aqui para pesquisar">
-                </div>
-                <div>
-                    <button id="btn-destruir-grupos-de-clones" type="button" class="btn btn-success">Fechar</button>
-                    <button type="button" class="btn btn-success">Clone</button>
-                </div>
-            </div>
+        <div id="div-grupo-de-clones" class="card p-3 shadow d-none" style="width: 400px; border-radius: 10px;">
         </div>
     
-    </div>
     
     <script src="script.js">
     </script>
