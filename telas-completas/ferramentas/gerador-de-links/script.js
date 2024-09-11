@@ -38,3 +38,11 @@ function gerarLink() {
         <p>Link gerado: <a href="${whatsappLink}" target="_blank">${whatsappLink}</a></p>
     `;
 }
+
+
+function resetar() {
+    document.getElementById('codigoPais').value = "+55"; // Define o valor padrão
+    document.getElementById('numero').value = "";
+    document.getElementById('mensagem').value = "";
+    document.getElementById('linkGerado').innerHTML = ""; // Limpa o link gerado, se houver
+}

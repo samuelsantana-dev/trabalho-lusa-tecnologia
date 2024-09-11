@@ -9,6 +9,13 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
 </head>
 <body>
+
+    <section>
+        <select name="" id="">
+            <option value="samuel">Samuel Santana</option>
+        </select>
+    </section>
+    <!-- Div dos botões de pr -->
     <div class="container-botoes-de-pr">
         <div class="button-list-botoes-de-pr">
             <div class="button-item-botoes-de-pr">
@@ -63,32 +70,35 @@
         </div>
 
     </div>
+    <!-- section de div notas -->
     <section class="container">
         <div id="div-nota" class="d-none">
-            <div class="mb-3">
-                <select name="opcao" id="opcao-notas" class="form-select">
-                    <option value="samuel">Samuel Santana</option>	
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="titulo" class="form-label">Titulo *</label>
-                <input type="text" class="form-control" id="titulo-notas" placeholder="Digite o texto">
-            </div>
-            <div class="mb-3">
-                <label for="notas-input" class="form-label">Notas *</label>
-                <textarea class="form-control" id="notas-input" rows="3"></textarea>
-            </div>
-            <input type="submit" id="button-enviar-form-notas" class="btn btn-primary"></input>
+            <form id="form-notas-criar">
+                <div class="mb-3">
+                    <select name="opcao" id="opcao-notas" class="form-select">
+                        <option value="samuel">Samuel Santana</option>	
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="titulo" class="form-label">Titulo *</label>
+                    <input type="text" class="form-control" id="titulo-notas" placeholder="Digite o texto">
+                </div>
+                <div class="mb-3">
+                    <label for="notas-input" class="form-label">Notas *</label>
+                    <textarea class="form-control" id="notas-input" rows="3"></textarea>
+                </div>
+                <input type="submit" id="button-enviar-form-notas" class="btn btn-primary"></input>
+            </form>
         </div>
-
+        <hr>
         <div id="div-resultado" class="d-none">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
+            <div class="user-item">
+                <!-- Adicionar div -->
+                 <div></div>
+                <div class="user-actions">
+                    <button class="btn copy-btn" onclick="copyText(this)">Copiar</button>
+                    <button class="btn edit-btn" onclick="editText(this)">Editar</button>
+                    <button class="btn delete-btn" onclick="deleteUser(this)">Excluir</button>
                 </div>
             </div>
         </div>
@@ -98,3 +108,5 @@
     <script src="script.js"></script>
 </body>
 </html>
+
+

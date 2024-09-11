@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Notas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="panel">
+    <div class="panel-header">
+        <h1>Notas</h1>
+        <button class="close-btn">Fechar</button>
+    </div>
+    <div class="filters">
+        <label for="note-type">Tipo:</label>
+        <button class="filter-btn active">Nota do Grupo</button>
+        <button class="filter-btn">Nota Individual</button>
+    </div>
+    <div class="search-order">
+        <input type="text" placeholder="Digite aqui...">
+        <select>
+            <option>Ordenar: Data</option>
+            <option>Ordenar: Nome</option>
+        </select>
+    </div>
+    <button class="add-note-btn">+ Adicionar Nota</button>
+    <div class="note-card">
+        <div class="note-card-header">
+            <h3>testes de nota</h3>
+            <div class="note-card-icons">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0018 14.158V11a8.003 8.003 0 00-6-7.874V2a2 2 0 10-4 0v1.126A8.003 8.003 0 002 11v3.159c0 .538-.214 1.055-.595 1.436L0 17h5m10 0v2a3 3 0 01-6 0v-2m6 0H9"/>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-7 7-7-7"/>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </div>
+        </div>
+        <div class="note-card-content">
+            <p>02/09/2024 16:40:03</p>
+            <div class="user-info">
+                <img src="https://via.placeholder.com/32" alt="Samuel Santana">
+                <span>Samuel Santana</span>
+            </div>
+            <div class="status">Individual</div>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
