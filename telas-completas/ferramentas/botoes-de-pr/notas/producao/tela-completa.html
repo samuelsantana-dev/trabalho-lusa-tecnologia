@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel de Notas</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
 </head>
 <body>
 <div class="panel">
@@ -24,32 +26,38 @@
             <option>Ordenar: Nome</option>
         </select>
     </div>
-    <button class="add-note-btn">+ Adicionar Nota</button>
+    <button class="add-note-btn" id="button-nota">+ Adicionar Nota</button>
+    <!-- Div admin resultado -->
     <div class="note-card">
-        <div class="note-card-header">
-            <h3>testes de nota</h3>
-            <div class="note-card-icons">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0018 14.158V11a8.003 8.003 0 00-6-7.874V2a2 2 0 10-4 0v1.126A8.003 8.003 0 002 11v3.159c0 .538-.214 1.055-.595 1.436L0 17h5m10 0v2a3 3 0 01-6 0v-2m6 0H9"/>
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-7 7-7-7"/>
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                </svg>
-            </div>
-        </div>
-        <div class="note-card-content">
-            <p>02/09/2024 16:40:03</p>
-            <div class="user-info">
-                <img src="https://via.placeholder.com/32" alt="Samuel Santana">
-                <span>Samuel Santana</span>
-            </div>
-            <div class="status">Individual</div>
+        <div class="user-item note-card-header d-flex justify-content-between direction-column">
+            <!-- div -->
         </div>
     </div>
 </div>
+
+<section class="container mt-5">
+    <div id="div-nota" class="d-none">
+        <form id="form-notas-criar">
+            <div class="mb-3">
+                <label for="opcao-notas" class="form-label">Opção</label>
+                <select name="opcao" id="opcao-notas" class="form-select">
+                    <option value="samuel">Samuel Santana</option>	
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="titulo-notas" class="form-label">Título *</label>
+                <input type="text" class="form-control" id="titulo-notas" placeholder="Digite o texto">
+            </div>
+            <div class="mb-3">
+                <label for="notas-input" class="form-label">Notas *</label>
+                <textarea class="form-control" id="notas-input" rows="3"></textarea>
+            </div>
+            <button type="submit" id="button-enviar-form-notas" class="btn btn-primary">Enviar</button>
+        </form>
+    </div>
+    <hr>
+</section>
+
 
 <script src="script.js"></script>
 </body>
