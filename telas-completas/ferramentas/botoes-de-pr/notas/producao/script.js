@@ -2,20 +2,13 @@
 const buttonNota = document.querySelector('#button-nota');
 const buttonEnviarFormNotas = document.querySelector('#button-enviar-form-notas');
 const divNota = document.querySelector('#div-nota');
-const divResultado = document.querySelector('#div-resultado');
 const inputOpcao = document.querySelector('#opcao-notas');
 const formulario = document.querySelector('#form-notas-criar');
 const userItem = document.querySelector('.user-item');
 
 // Função para mostrar ou esconder elemento
 function mostrarElemento(elemento) {
-    if (elemento.classList.contains('d-none')) {
-        elemento.classList.add('d-block');
-        elemento.classList.remove('d-none');
-    } else {
-        elemento.classList.add('d-none');
-        elemento.classList.remove('d-block');
-    }
+    elemento.classList.toggle('d-none');
 }
 
 // Função para adicionar evento de clique
@@ -23,29 +16,26 @@ function ouvirClick(elemento, funcao) {
     elemento.addEventListener('click', funcao);
 }
 
-// Função para criar e adicionar notas
-function criarDivsNotas(text, done = 0, save = 1) {
-    const inputText = document.querySelector('#titulo-notas').value;
-    const inputTextAreaNotas = document.querySelector('#notas-input').value;
-
+// Função para criar, adicionar e filtrar notas
+function criarDivsNotas(text, notas, tipo, name, done = 0, save = 1) {
     const todo = document.createElement("div");
     todo.classList.add("card");
 
     const todoTitle = document.createElement("h3");
-    todoTitle.innerText = inputText;
+    todoTitle.innerText = text;
     todo.appendChild(todoTitle);
 
     const textName = document.createElement("h3");
-    textName.innerText = 'Samuel Santana';
+    textName.innerText = name;
     todo.appendChild(textName);
 
     const statusButton = document.createElement("button");
     statusButton.classList.add("status");
-    statusButton.innerText = 'Individual';
+    statusButton.innerText = tipo;
     todo.appendChild(statusButton);
 
     const todoText = document.createElement("p");
-    todoText.innerText = inputTextAreaNotas;
+    todoText.innerText = notas;
     todo.appendChild(todoText);
 
     const doneBtn = document.createElement("button");
@@ -70,7 +60,7 @@ function criarDivsNotas(text, done = 0, save = 1) {
     }
 
     if (save) {
-        saveTodoLocalStorage({ text: inputText, notes: inputTextAreaNotas, done: 0 });
+        saveTodoLocalStorage({ text: text, notas: notas, tipo: tipo, done: 0 });
     }
 
     // Adicionar funcionalidade aos botões
@@ -89,6 +79,19 @@ function criarDivsNotas(text, done = 0, save = 1) {
     });
 }
 
+const filterTodos = (filterValue) => {
+    const divTodo = document.querySelectorAll('.card');
+
+    switch (filterValue) {
+        case  'all':
+            divTodo.forEach((todo) => todo.computedStyleMap.display = "flex");
+            break;
+        
+        case 'status':
+
+    }
+}
+
 // Evento de clique para mostrar o formulário de notas
 ouvirClick(buttonNota, () => {
     mostrarElemento(divNota);
@@ -97,14 +100,18 @@ ouvirClick(buttonNota, () => {
 // Evento de envio do formulário
 formulario.addEventListener('submit', (event) => {
     event.preventDefault();
-    criarDivsNotas();
+    const inputText = document.querySelector('#titulo-notas').value;
+    const inputTextAreaNotas = document.querySelector('#notas-input').value;
+    const inputTipo = document.querySelector('#opcao-notas').value;
+    const inputTipoName = document.querySelector('#opcao-notas-name').value;
+   
+    criarDivsNotas(inputText, inputTextAreaNotas, inputTipo, inputTipoName);
     formulario.reset();
 });
 
 // Funções para o Local Storage
 const getTodosLocalStorage = () => {
-    const localStorageSave = JSON.parse(localStorage.getItem("notas")) || [];
-    return localStorageSave;
+    return JSON.parse(localStorage.getItem("notas")) || [];
 }
 
 const saveTodoLocalStorage = (todo) => {
@@ -119,7 +126,7 @@ const updateTodoLocalStorage = () => {
         const todoTitle = todoElement.querySelector('h3').innerText;
         const todoText = todoElement.querySelector('p').innerText;
         const done = todoElement.classList.contains('done');
-        todos.push({ text: todoTitle, notes: todoText, done: done ? 1 : 0 });
+        todos.push({ text: todoTitle, notas: todoText, done: done ? 1 : 0 });
     });
     localStorage.setItem("notas", JSON.stringify(todos));
 }
@@ -127,7 +134,7 @@ const updateTodoLocalStorage = () => {
 const loadTodos = () => {
     const todos = getTodosLocalStorage();
     todos.forEach((todo) => {
-        criarDivsNotas(todo.text, todo.done, 0);
+        criarDivsNotas(todo.text, todo.notas, todo.done, 0);
     });
 }
 

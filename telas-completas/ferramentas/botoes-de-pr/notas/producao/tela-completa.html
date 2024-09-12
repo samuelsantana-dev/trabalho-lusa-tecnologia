@@ -9,54 +9,74 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-<div class="panel">
-    <div class="panel-header">
-        <h1>Notas</h1>
-        <button class="close-btn">Fechar</button>
-    </div>
-    <div class="filters">
-        <label for="note-type">Tipo:</label>
-        <button class="filter-btn active">Nota do Grupo</button>
-        <button class="filter-btn">Nota Individual</button>
-    </div>
-    <div class="search-order">
-        <input type="text" placeholder="Digite aqui...">
-        <select>
-            <option>Ordenar: Data</option>
-            <option>Ordenar: Nome</option>
-        </select>
-    </div>
-    <button class="add-note-btn" id="button-nota">+ Adicionar Nota</button>
-    <!-- Div admin resultado -->
-    <div class="note-card">
-        <div class="user-item note-card-header d-flex justify-content-between direction-column">
-            <!-- div -->
-        </div>
-    </div>
-</div>
 
-<section class="container mt-5">
-    <div id="div-nota" class="d-none">
-        <form id="form-notas-criar">
-            <div class="mb-3">
-                <label for="opcao-notas" class="form-label">Opção</label>
-                <select name="opcao" id="opcao-notas" class="form-select">
-                    <option value="samuel">Samuel Santana</option>	
+<main>
+    <section>
+        <div class="panel">
+            <div class="panel-header">
+                <h1>Notas</h1>
+                <button class="close-btn">Fechar</button>
+            </div>
+            <div class="filters">
+                <label for="note-type">Tipo:</label>
+                <select name="" id="">
+                    <option value="grupo">Nota do Grupo</option>
+                    <option value="individual">Nota Individual</option>
+                </select>
+               
+                <!-- <button class="filter-btn active">Nota do Grupo</button>
+                <button class="filter-btn">Nota Individual</button> -->
+            </div>
+            <div class="search-order">
+                <input type="text" placeholder="Digite aqui...">
+                <select>
+                    <option>Ordenar: Data</option>
+                    <option>Ordenar: Nome</option>
                 </select>
             </div>
-            <div class="mb-3">
-                <label for="titulo-notas" class="form-label">Título *</label>
-                <input type="text" class="form-control" id="titulo-notas" placeholder="Digite o texto">
+            <button class="add-note-btn" id="button-nota">+ Adicionar Nota</button>
+            <!-- Div admin resultado -->
+            <div class="note-card">
+                <div class="user-item note-card-header d-flex justify-content-between flex-column">
+                    <!-- div -->
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="notas-input" class="form-label">Notas *</label>
-                <textarea class="form-control" id="notas-input" rows="3"></textarea>
-            </div>
-            <button type="submit" id="button-enviar-form-notas" class="btn btn-primary">Enviar</button>
-        </form>
-    </div>
-    <hr>
-</section>
+        </div>
+    </section>
+    
+    <section class="popup mt-5 d-none" id="div-nota">
+        <div class="popup-content">
+            <button class="close-popup" id="close-popup">&times;</button>
+            <form id="form-notas-criar">
+                <div class="mb-3">
+                    <label for="opcao-notas" class="form-label">Opção</label>
+                    <select name="opcao" id="opcao-notas" class="form-select">
+                        <option value="individual">Individual</option>
+                        <option value="grupo">Grupo</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="opcao-notas-name" class="form-label">Opção</label>
+                    <select name="opcao" id="opcao-notas-name" class="form-select">
+                        <option value="samuel">Samuel Santana</option>
+                        <option value="isaias">Isaias</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="titulo-notas" class="form-label">Título *</label>
+                    <input type="text" class="form-control" id="titulo-notas" placeholder="Digite o texto">
+                </div>
+                <div class="mb-3">
+                    <label for="notas-input" class="form-label">Notas *</label>
+                    <textarea class="form-control" id="notas-input" rows="3"></textarea>
+                </div>
+                
+                </div>
+                <button type="submit" id="button-enviar-form-notas" class="btn btn-primary">Enviar</button>
+            </form>
+        </div>
+    </section>
+</main>
 
 
 <script src="script.js"></script>
