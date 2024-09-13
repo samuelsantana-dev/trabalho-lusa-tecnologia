@@ -1,8 +1,6 @@
 // Elementos do DOM
 const buttonNota = document.querySelector('#button-nota');
-const buttonEnviarFormNotas = document.querySelector('#button-enviar-form-notas');
 const divNota = document.querySelector('#div-nota');
-const inputOpcao = document.querySelector('#opcao-notas');
 const formulario = document.querySelector('#form-notas-criar');
 const userItem = document.querySelector('.user-item');
 
@@ -60,7 +58,7 @@ function criarDivsNotas(text, notas, tipo, name, done = 0, save = 1) {
     }
 
     if (save) {
-        saveTodoLocalStorage({ text: text, notas: notas, tipo: tipo, done: 0 });
+        saveTodoLocalStorage({ text: text, notas: notas, tipo: tipo, name: name, done: done });
     }
 
     // Adicionar funcionalidade aos botões
@@ -79,18 +77,46 @@ function criarDivsNotas(text, notas, tipo, name, done = 0, save = 1) {
     });
 }
 
-const filterTodos = (filterValue) => {
+const filterTodosSelect = (filterValue) => {
     const divTodo = document.querySelectorAll('.card');
-
+    const todosLocalStorage = getTodosLocalStorage();
+    const filteredTodos = todosLocalStorage.filter(todo => todo.tipo === filterValue);
+    const individual = 'individual';
     switch (filterValue) {
-        case  'all':
-            divTodo.forEach((todo) => todo.computedStyleMap.display = "flex");
+        case "grupo":
+            // Exibir ou ocultar as divs com base no tipo
+            divTodo.forEach((todo) => {
+                const title = todo.querySelector('.status').innerText;
+                const matchingTodo = filteredTodos.some(item => item.tipo === title);
+                if (matchingTodo) {
+                    todo.style.display = 'block';
+                } else {
+                    todo.style.display = 'none';
+                }
+            });
             break;
-        
-        case 'status':
 
+        case individual:
+            
+            // Exibir ou ocultar as divs com base no tipo
+            divTodo.forEach((todo) => {
+                const title = todo.querySelector('.status').innerText;
+                const matchingTodo = filteredTodos.some(item => item.tipo === title);
+                if (matchingTodo) {
+                    todo.style.display = 'block';
+                } else {
+                    todo.style.display = 'none';
+                }
+            });
+            break;
     }
 }
+
+// Evento para filtrar
+const filterTipo = document.querySelector('#filter-tipo');
+filterTipo.addEventListener('change', (event) => {
+    filterTodosSelect(event.target.value);
+});
 
 // Evento de clique para mostrar o formulário de notas
 ouvirClick(buttonNota, () => {
@@ -104,7 +130,7 @@ formulario.addEventListener('submit', (event) => {
     const inputTextAreaNotas = document.querySelector('#notas-input').value;
     const inputTipo = document.querySelector('#opcao-notas').value;
     const inputTipoName = document.querySelector('#opcao-notas-name').value;
-   
+
     criarDivsNotas(inputText, inputTextAreaNotas, inputTipo, inputTipoName);
     formulario.reset();
 });
@@ -125,8 +151,10 @@ const updateTodoLocalStorage = () => {
     document.querySelectorAll('.user-item .card').forEach((todoElement) => {
         const todoTitle = todoElement.querySelector('h3').innerText;
         const todoText = todoElement.querySelector('p').innerText;
+        const tipo = todoElement.querySelector('.status').innerText;
+        const name = todoElement.querySelector('h3').innerText;
         const done = todoElement.classList.contains('done');
-        todos.push({ text: todoTitle, notas: todoText, done: done ? 1 : 0 });
+        todos.push({ text: todoTitle, notas: todoText, tipo: tipo, name: name, done: done ? 1 : 0 });
     });
     localStorage.setItem("notas", JSON.stringify(todos));
 }
@@ -134,11 +162,9 @@ const updateTodoLocalStorage = () => {
 const loadTodos = () => {
     const todos = getTodosLocalStorage();
     todos.forEach((todo) => {
-        criarDivsNotas(todo.text, todo.notas, todo.done, 0);
+        criarDivsNotas(todo.text, todo.notas, todo.tipo, todo.name, todo.done, 0);
     });
 }
-
-// Carregar notas ao carregar a página
 window.addEventListener('load', loadTodos);
 
 // Função para editar uma nota
