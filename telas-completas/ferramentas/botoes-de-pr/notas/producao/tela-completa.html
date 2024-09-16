@@ -13,19 +13,14 @@
 <main>
     <section>
         <div class="panel">
-            <div class="panel-header">
-                <h1>Notas</h1>
-                <button class="close-btn">Fechar</button>
-            </div>
             <div class="filters">
                 <label for="note-type">Tipo:</label>
                 <select name="" id="filter-tipo">
+                    <option value="todos">Todos</option>
                     <option value="grupo">Nota do Grupo</option>
                     <option value="individual">Nota Individual</option>
                 </select>
                
-                <!-- <button class="filter-btn active">Nota do Grupo</button>
-                <button class="filter-btn">Nota Individual</button> -->
             </div>
             <div class="search-order">
                 <input type="text" placeholder="Digite aqui...">
@@ -36,7 +31,7 @@
             </div>
             <button class="add-note-btn" id="button-nota">+ Adicionar Nota</button>
             <!-- Div admin resultado -->
-            <div class="note-card">
+            <div class="note-card list-container-chatbot">
                 <div class="user-item note-card-header d-flex justify-content-between flex-column">
                     <!-- div -->
                 </div>

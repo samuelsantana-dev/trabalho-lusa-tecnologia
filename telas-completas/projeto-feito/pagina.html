@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav >
+        <p>Exportar contatos de</p>
+        <div id="nav-container">
+            <ul>
+                <li><a href="#" id="contacts-link">Contatos</a></li>
+                <li><a href="#" id="groups-link">Grupos</a></li>
+                <li><a href="#">Transmissão</a></li>
+                <li><a href="#" id="abas-link">Abas</a></li>
+            </ul>
+            <div id="line"></div>
+        </div>
+    </nav>
+
+    <div class="div-pai">
+
+       
+        <div class="custom-select" id="contacts-select" >
+            <p>Selecione Exportar</p>
+            <select>
+              <option value="">Todos os contatos da lista de bate papo</option>
+              <option value="">Todos os contatos salvos da lista de bate papo</option>
+              <option value="">Todos os contatos não salvos da lista de bate papo</option>
+            </select>
+        </div>
+       
+        <div class="custom-select" id="abas-especificos">
+            <p>Selecione Exportar</p>
+            <select>
+              <option value="">Todos os contatos da guia</option>
+              <option value="">Contatos salvos da guia</option>
+              <option value="">Contatos não salvos da guia</option>
+            </select>
+        </div>
+        <div class="custom-select" id="abas-exportar">
+            <p>Selecione especifico abas</p>
+            <select>
+              <option value="">Tudo</option>
+              <option value="">Não lida</option>
+              <option value="">Pessoal</option>
+              <option value="">Grupos</option>
+              <option value="">Transmissão</option>
+              <option value="">O negocio</option>
+              <option value="">Oficial</option>
+            </select>
+        </div>
+        <div class="custom-select" id="groups-select" >
+            <p>Selecione Exportar</p>
+            <select>
+              <option value="">Todos os contatos do grupo</option>
+              <option value="">Todos os contatos salvos do grupo</option>
+              <option value="">Contatos não salvos da lista de pate papo</option>
+              <option value="">Todos os contatos de um grupo especifico</option>
+              <option value="">Contatos salvos de um grupo especifico</option>
+              <option value="">Contatos não salvos de um grupo especifico</option>
+              <option value="">Todos os contatos do grupo atual</option>
+              <option value="">Contatos não salvos do grupo atual</option>
+              <option value="">Exportar todo o ID do grupo</option>
+            </select>
+        </div>
+        
+        <div class="divInputButton">
+            <div class="namePrefix">
+                <p>Prefixo do nome (opcional)</p>
+                <input type="text" placeholder="Prefixo do nome" />
+            </div>
+            <div class="divNameButton">
+                <button class="button-base rounded-button">Redefinir</button>
+                <button class="button-base custom-button">Exportar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+     document.addEventListener('DOMContentLoaded', function() {
+    var selectDiv = document.getElementById('contacts-select');
+    var selectDivGroup = document.getElementById('groups-select');
+    var selectDivBate = document.getElementById('abas-especificos');
+    var abasEspecificos = document.getElementById('abas-exportar');
+    
+    document.getElementById('contacts-link').addEventListener('click', function(event) {
+        event.preventDefault();
+        selectDiv.classList.toggle('active');
+        selectDivGroup.classList.remove('active');
+        selectDivBate.classList.remove('active');
+    });
+    
+    document.getElementById('groups-link').addEventListener('click', function(event) {
+        event.preventDefault();
+        selectDivGroup.classList.toggle('active');
+        selectDiv.classList.remove('active');
+        selectDivBate.classList.remove('active');
+        abasEspecificos.classList.remove('active');
+    });
+    
+    document.getElementById('abas-link').addEventListener('click', function(event) {
+        event.preventDefault();
+        selectDivBate.classList.toggle('active');
+        abasEspecificos.classList.toggle('active');
+        selectDiv.classList.remove('active');
+        selectDivGroup.classList.remove('active');
+    });
+});
+
+    </script>
+      
+
+</body>
+</html>

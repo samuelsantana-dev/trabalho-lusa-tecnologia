@@ -220,3 +220,33 @@ main {
     padding: 2px 8px;
     font-size: 12px;
 }
+
+.list-container-chatbot {
+    margin-top: 1rem;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ccc; 
+    padding: 10px;
+  }
+  
+  /* List Item Styles */
+  .list-item-chatbot {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .icon-chatbot {
+    margin-right: 10px;
+  }
+  
+  .text-chatbot {
+    font-weight: bold;
+  }
+  
+  .description-chatbot {
+    margin-left: auto;
+    font-size: 14px;
+    color: #888;
+  }

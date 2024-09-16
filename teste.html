@@ -1,0 +1,137 @@
+<div class="sidebar-suite-container injected-container" id="4">
+    <div class="header">
+        <h1>Ferramentas</h1>
+        <div class="icons"></div>
+    </div>
+    <div class="content">
+            <!--
+            <a href="tela-borrar.html" class="link-menu">
+                <i class="fas fa-file-alt">icons</i>
+                Nome no Texto
+            </a>
+            <a href="botoes-de-pr.html" class="link-menu">
+                <i class="fas fa-users">icons</i>
+                Botões de PR
+            </a>
+            <a href="" class="link-menu">
+                <i class="fas fa-user-friends">icons</i>
+                Ações de grupo
+            </a>
+            <a href="" class="link-menu">
+                <i class="fas fa-comment-dots">icons</i>
+                Utilitários WA
+            </a>
+            -->
+        <div class="container" id="menu-ferramentas">    
+            <div class="row justify-content-around">
+                <div data-id="container-borrao" data-label="Ocultar informações" class="menu-item-ferramentas card col-5 text-center cursor">
+                    Borrão informações
+                </div>
+                <div data-id="container-gerador-link" data-label="Gerador de Link" class="menu-item-ferramentas card col-5 text-center cursor">
+                    Gerador de links
+                </div>
+                <div data-id="container-açoes-do-grupo" data-label="açoes-do-grupo" class="menu-item-ferramentas card col-5 text-center cursor">
+                    Ações de grupo
+                </div> 
+                <div data-id="container-botoes-de-pr" data-label="botoes-de-pr" class="menu-item-ferramentas card col-5 text-center cursor">
+                    Botões de pr
+                </div> 
+                <div data-id="container-utilitários-wa" data-label="utilitários-wa" class="menu-item-ferramentas card col-5 text-center cursor">
+                    Utilitários WA
+                </div> 
+            </div>
+        </div>
+        <div id="close-item-menu-ferramenta" class="card d-flex flex-row justify-content-between pointer" style="display:none !important;">
+            <div id="label-menu-ferramenta">Link</div>
+            <div>Fechar →</div>
+        </div>
+        <div id="container-borrao" class="card pointer" style="display: none;">
+            <div class="form-list">
+                <p>Borrar informações privadas da tela</p>
+                <label><input type="checkbox" id="inputBorrarMensagens">Borrar Mensagens</label>
+                <label><input type="checkbox" id="inputBorrarNomes">Borrar nomes de perfil</label>
+                <label><input type="checkbox" id="inputBorrarImagem">Borrão fotos de exibição (DP)</label>
+                <label><input type="checkbox" id="inputBorrarConversa">Borrar Conversa</label>
+                <label id="labelPairar" style="display: none;"><input type="checkbox" id="inputPairar">Pairar</label>
+            </div>
+        </div>
+        <div id="container-gerador-link" class="card pointer" style="display: none;">
+        <p>Gere um link personalizado WhatsApp com uma mensagem predefinida</p>
+            <p>Código do País *</p>
+            <div class="input-group">
+                <select title="Selecione" id="codigoPais" class="form-control w-25">
+                </select>
+                <input type="number" id="numero_gerador" class="form-control w-75" placeholder="xx x xxxx-xxxx" />
+            </div>
+            <div>
+                <label for="mensagem_gerador">Mensagem *</label>
+                <input type="text" id="mensagem_gerador" class="form-control" placeholder="Digite sua mensagem">
+            </div>
+            <div class="d-flex mt-2">
+                <button class="btn btn-outline-secondary" id="buttonRedefinir">Redefinir</button>
+                <button class="btn btn-outline-primary " id="buttonGerador">Obter Link</button>
+            </div>
+            <div id="linkGerado" style="margin-top: 20px;"></div>
+        </div>
+        
+        <div id="container-botoes-de-pr" class="container-botoes-de-pr">
+            <div class="button-list-botoes-de-pr">
+                <div class="button-item-botoes-de-pr">
+                    <p>Adicionar às guias personalizadas</p>
+                     <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round">mostrar</span>
+                    </label>
+                </div>
+                <div class="button-item-botoes-de-pr">
+                    <span>Agendar</span>
+                     <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round">mostrar</span>
+                    </label>
+                </div>
+                <div class="button-item-botoes-de-pr">
+                    <p>Notas</p>
+                     <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round">mostrar</span>
+                    </label>
+                </div>
+                <div class="button-item-botoes-de-pr">
+                    <span>Lembrete</span>
+                     <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round">mostrar</span>
+                    </label>
+                </div>
+                <div class="button-item-botoes-de-pr">
+                    <span>Resposta Rápida</span>
+                     <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round">mostrar</span>
+                    </label>
+                </div>
+                <div class="button-item-botoes-de-pr">
+                    <span>Afirmativo</span>
+                     <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round">mostrar</span>
+                    </label>    
+                </div>
+                <div class="button-item-botoes-de-pr">
+                    <span>Perfil</span>
+                     <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round">mostrar</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div id="container-utilitários-wa" class="card pointer" style="display: none;">
+            <div class="form-list">
+                <p>Utilitarios WA</p>
+                <label><input type="checkbox" id="listaBatePapo">Pequena lista de bate-papo</label>
+            </div>
+        </div>
+    </div>
+</div>

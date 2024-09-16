@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+      <div class="banner-nav-bar-chatbot">
+        <span class="text"> 🤖 RECURSO FANTÁSTICO CHATBOT 🤖</span>
+
+
+        <button class="btn-nav-bar-chatbot">Ver Mais</button>
+        <button class="close-nav-bar-chatbot">X</button>
+      </div>
+        <div>
+            <p>Organizamos as guias do WhatsApp para você, permitindo que você se concentre no que faz de melhor</p>
+        </div>
+        <div class="divButton">
+            <button class="custom-button">+ Adicionar guia personalizado</button>
+            <div class="toggle-container">
+              <div class="toggle-container-dynamic-button" id="toggleContainer">
+                <span>mostrar</span>
+                <div class="toggle-switch-dynamic-button"></div>
+            </div>
+            
+           
+                <span class="settings-icon">⚙️</span>
+            </div>
+        </div>
+        <div>
+            <div class="divText">
+                <span class="close">&times;</span>
+                <h2>Respeitamos sua privacidade</h2>
+                <p>É por isso que não salvamos seus dados para nossos servidores.</p>
+                <p>Os dados de guias personalizados são armazenados em seu próprio navegador do Chrome.</p>
+                <p>Remover a extensão excluirá permanentemente os dados.</p>
+                <p>Então, antes de remover a extensão, é melhor levar uma exportação dos dados atuais para que você possa importá-lo em uma data posterior, se necessário.</p>
+                <p>Caso contrário, você não poderá recuperá-lo.</p>
+            </div>
+        </div>
+
+        <div class="list-container-chatbot">
+          <div class="list-item-chatbot">
+              <span class="icon-chatbot">☰</span>
+              <span class="text-chatbot">Tudo</span>
+              <p class="description-chatbot">Nenhum filtro aplicado</p>
+          </div>
+          <div class="list-item-chatbot">
+              <p class="icon-chatbot">☰</p>
+              <p class="text-chatbot">Não lida</p>
+              <p class="description-chatbot">Continue onde parou</p>
+              <p class="description-chatbot\">Continue onde parou</p>
+          </div>
+          <div class="list-item-chatbot">
+              <p class="icon-chatbot">☰</p>
+              <p class="text-chatbot">Não lida</p>
+              <p class="description-chatbot">Continue onde parou</p>
+          </div>
+          <div class="list-item-chatbot">
+              <p class="icon-chatbot">☰</p>
+              <p class="text-chatbot">Não lida</p>
+              <p class="description-chatbot">Continue onde parou</p>
+          </div>  
+    </div>
+
+    <script>
+      document.getElementById('toggleContainer').addEventListener('click', function() {
+          this.classList.toggle('active');
+      });
+  </script>
+</body>
+</html>

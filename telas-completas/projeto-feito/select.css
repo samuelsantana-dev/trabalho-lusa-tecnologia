@@ -1,0 +1,77 @@
+.custom-select {
+  margin-top: 1rem;
+  width: 100%;
+  max-width: 100%; 
+  box-sizing: border-box; 
+}
+
+.custom-select select {
+  appearance: none;
+  width: 100%;
+  font-size: 1rem; 
+  padding: 0.5em 3em 0.5em 1em; 
+  border-radius: 0.5rem;
+  background: transparent;
+  color: #fafafa;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-sizing: border-box; 
+}
+  .custom-select {
+    display: none; 
+  }
+
+  .custom-select.active {
+    display: block; 
+  }
+
+.custom-select select:hover {
+  border-color: #aaa;
+}
+
+.custom-select select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+}
+
+.custom-select select option {
+  border-radius: 8px;
+  color: #ffffff;
+  background-color:#3F4B56;
+}
+
+.custom-select select option[selected] {
+  background-color: #f0f0f0;
+}
+
+.custom-select::before,
+.custom-select::after {
+  content: "";
+  position: absolute;
+  right: 1rem;
+  pointer-events: none;
+}
+
+
+
+@media (max-width: 768px) {
+  .custom-select select {
+    font-size: 0.9rem; 
+    padding: 0.5em 2.5em 0.5em 1em; 
+  }
+}
+
+@media (max-width: 480px) {
+  .custom-select select {
+    font-size: 0.8rem;
+    padding: 0.5em 2em 0.5em 1em; 
+  }
+
+  .custom-select::before,
+  .custom-select::after {
+    right: 0.5rem;
+  }
+}

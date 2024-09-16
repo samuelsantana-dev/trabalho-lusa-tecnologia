@@ -1,0 +1,84 @@
+.namePrefix {
+  text-align: left;
+  width: 80%;
+  padding: 1rem;
+  background-color: transparent;
+  text-align: left;
+}
+
+.namePrefix input {
+  width: 100%;
+  padding: .3rem;
+  border-radius: 10px;
+  border: 1px solid #FFFFFF;
+  background: transparent;
+  color: #C9D3E0;
+  outline: none;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: border-color 0.3s, box-shadow 0.3s, color 0.3s;
+  text-align: left;
+}
+
+.namePrefix input::placeholder {
+  color: #C9D3E0;
+  transition: color 0.3s;
+}
+
+.namePrefix input:hover,
+.namePrefix input:focus {
+  border-color: rgb(4, 28, 163);
+  box-shadow: 0 0 5px rgb(4, 28, 163);
+}
+
+.namePrefix input:focus::placeholder {
+  color: white;
+}
+
+.button {
+  display: inline-block;
+  padding: 0.75rem 1.25rem;
+  border-radius: 10rem;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 1rem;
+  letter-spacing: 0.15rem;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.button::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80%;
+  background-color: #007bff; /* Substitua #007bff pelo valor de $color */
+  border-radius: 10rem;
+  z-index: -2;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background-color: #3FA9BB;
+  transition: all 0.3s;
+  border-radius: 10rem;
+  z-index: -1;
+}
+
+.button:hover {
+  color: #fff;
+}
+
+.button:hover::before {
+  width: 100%;
+}
+

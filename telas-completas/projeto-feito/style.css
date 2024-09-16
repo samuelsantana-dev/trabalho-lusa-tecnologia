@@ -1,0 +1,261 @@
+:root{
+  --border-color: #24C4D9;
+  --box-shadow-blue: #24C4D9;
+  --text-color: #fafafa;
+  --box-shadow-black: rgba(0, 0, 0, 0.1);
+  --background-or-border-blue:  #00A0E3;
+}
+
+.custom-select {
+    margin-top: 1rem;
+    width: 100%;
+    max-width: 100%; 
+    box-sizing: border-box; 
+  }
+  
+  .custom-select select {
+    appearance: none;
+    width: 100%;
+    font-size: 1rem; 
+    padding: 0.5em 3em 0.5em 1em;
+    border-radius: 0.5rem;
+    background: transparent;
+    color: var(--text-color);
+    border: 1px solid var(--text-color);
+    box-shadow: 0 2px 4px var(--box-shadow-black);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-sizing: border-box; 
+  }
+  .custom-select {
+    display: none;
+  }
+  
+  .custom-select.active {
+    display: block;
+  }
+  
+  .custom-select select:hover {
+    border-color: #aaa;
+  }
+  
+  .custom-select select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+  }
+  
+  .custom-select select option {
+    border-radius: 8px;
+    color: #ffffff;
+    background-color:#3F4B56;
+  }
+  
+  .custom-select select option[selected] {
+    background-color: #f0f0f0;
+  }
+  
+  .custom-select::before,
+  .custom-select::after {
+    content: "";
+    position: absolute;
+    right: 1rem;
+    pointer-events: none;
+  }
+  
+  
+  /* Media query para tornar o select mais responsivo */
+  @media (max-width: 768px) {
+    .custom-select select {
+      font-size: 0.9rem; /* Menor tamanho da fonte para telas menores */
+      padding: 0.5em 2.5em 0.5em 1em; /* Ajustar padding */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .custom-select select {
+      font-size: 0.8rem; /* Ajuste adicional para telas muito pequenas */
+      padding: 0.5em 2em 0.5em 1em; /* Ajustar padding adicional */
+    }
+  
+    .custom-select::before,
+    .custom-select::after {
+      right: 0.5rem; /* Ajustar a posição das setas */
+    }
+  }
+
+  /* Div do input e o button*/
+  
+  .divInputButton{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .namePrefix {
+    text-align: left;
+    width: 80%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background-color: transparent;
+    text-align: left;
+  }
+  
+  .namePrefix input {
+    width: 100%;
+    padding: .2rem;
+    border-radius: 10px;
+    border: 1px solid #FFFFFF;
+    background: transparent;
+    color: #C9D3E0;
+    outline: none;
+    font-size: .8rem;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s, color 0.3s;
+    text-align: left;
+  }
+
+  
+  .namePrefix input::placeholder {
+    color: #C9D3E0;
+    transition: color 0.3s;
+  }
+  
+  .namePrefix input:hover,
+  .namePrefix input:focus {
+    border-color: var(--border-color);
+    box-shadow: 0 0 5px var(--box-shadow-blue);
+  }
+  
+  .namePrefix input:focus::placeholder {
+    color: var(--text-color);
+  }
+
+  /*Botões*/
+  /*Classes Compartilhadas chamei essa classe no css*/
+  .button-base {
+    border-radius: 25px;
+    padding: 8px;
+    font-weight: bold; 
+    font-size: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+  /*Estilo específico para custom-button*/
+.custom-button {
+  background-color: var(--background-or-border-blue);
+  border: 2px solid var(--background-or-border-blue);
+  color: var(--text-color);
+}
+
+/*Estilo específico para rounded-button*/
+.rounded-button {
+  background-color: transparent;
+  border: 1px solid var(--text-color);
+  color: var(--text-color); 
+}
+
+.custom-button, .rounded-button {
+  @extend .button-base;
+}
+  
+  
+  section#nav-test {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+}
+
+#nav-container {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 800px;
+}
+
+#nav-container ul {
+    border: 1px solid rgb(50, 54, 57);
+    display: flex;
+    background: transparent;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#nav-container ul li {
+    border: 1px solid rgb(232, 235, 238);
+    display: flex;
+    align-items: center;
+    flex: 1;
+    justify-content: center;
+    cursor: pointer;
+}
+
+#nav-container ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 0.3rem 0.75rem;
+    display: block;
+    text-align: center;
+    font-size: 0.875rem;
+}
+
+#nav-container ul li:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+#line {
+    position: absolute;
+    bottom: 0;
+    height: 2px;
+    background: red;
+    transition: all 150ms ease-in-out;
+    width: 100%;
+}
+
+h1 {
+    margin-top: 30px;
+    font-weight: 500;
+    color: #212121;
+    text-align: center;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    #nav-container ul {
+        padding: 0;
+        width: 100%;
+    }
+
+    #nav-container ul li {
+        margin: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3); 
+    }
+
+    #nav-container ul li:last-child {
+        border-bottom: none;
+    }
+
+    #nav-container ul li a {
+        padding: 0.5rem;
+        font-size: 0.875rem;
+    }
+
+    #line {
+        display: none;
+    }
+}
+
+
+
+html, body {
+    background-color: #395F7D;
+    color: var(--text-color);
+}
+
+.div-pai{
+    display: flex;
+    flex-direction: column;
+}

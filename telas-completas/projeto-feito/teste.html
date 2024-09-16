@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Select</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #202020;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.custom-select-wrapper {
+    position: relative;
+    width: 300px;
+}
+
+.custom-select {
+    width: 100%;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 1px solid #00A0E3;
+    border-radius: 10px;
+    background-color: #202020;
+    color: white;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    position: relative;
+}
+
+.custom-select:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+.custom-select::after {
+    content: '\25BC'; /* Unicode character for down arrow */
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: white;
+}
+
+.custom-select option {
+    background-color: #333;
+    color: white;
+}
+
+.custom-select option:hover {
+    background-color: #444;
+}
+
+
+    </style>
+</head>
+<body>
+    <!DOCTYPE html>
+    <html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Custom Select</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div class="custom-select-wrapper">
+            <div class="custom-select">
+                <select>
+                    <option>Todos os contatos de um grupo específico</option>
+                    <option>Contatos salvos de um grupo específico</option>
+                    <option>Contatos não salvos de um grupo específico</option>
+                    <option>Todos os contatos do grupo atual</option>
+                    <option>Contatos salvos do grupo atual</option>
+                    <option>Contatos não salvos do grupo atual</option>
+                </select>
+            </div>
+        </div>
+    
+        <script src="script.js"></script>
+    </body>
+    </html>
+    
+</body>
+</html>

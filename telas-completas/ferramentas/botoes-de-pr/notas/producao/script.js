@@ -109,6 +109,19 @@ const filterTodosSelect = (filterValue) => {
                 }
             });
             break;
+
+        case "todos":
+
+            // Exibir ou ocultar as divs com base no tipo
+            divTodo.forEach((todo) => {
+                const title = todo.querySelector('.status').innerText;
+                const matchingTodo = filteredTodos.some(item => item.tipo !== title);
+                if (matchingTodo) {
+                    todo.style.display = 'block';
+                } else {
+                    todo.style.display = 'block';
+                }
+            })
     }
 }
 

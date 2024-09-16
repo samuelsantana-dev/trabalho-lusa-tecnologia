@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Roboto');
+
+        body {
+            font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+            background: #eaeaea;
+            margin: 0;
+        }
+
+        section#nav-test {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        #nav-container {
+            box-sizing: border-box;
+            width: 100%;
+            max-width: 1200px; /* Define uma largura máxima para o menu */
+        }
+
+        #nav-container ul {
+            display: flex;
+            background: rgb(50, 54, 57);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        #nav-container ul li {
+            display: flex;
+            align-items: center;
+            min-height: 48px;
+            flex: 1; /* Faz com que os itens se distribuam igualmente */
+            justify-content: center; /* Centraliza o conteúdo dos itens */
+            cursor: pointer;
+        }
+
+        #nav-container ul li a {
+            color: rgb(241, 241, 241);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            display: block;
+            text-align: center;
+        }
+
+        #nav-container ul li:hover {
+            background: rgba(255, 255, 255, 0.1); /* Adiciona um fundo leve ao passar o mouse */
+        }
+
+        #line {
+            position: absolute;
+            bottom: 0;
+            height: 2px;
+            background: red;
+            transition: all 150ms ease-in-out;
+            width: 100%;
+        }
+
+        h1 {
+            margin-top: 30px;
+            font-weight: 500;
+            color: #212121;
+            text-align: center;
+        }
+
+        /* Responsividade */
+        @media (max-width: 600px) {
+            #nav-container ul {
+                padding: 0;
+                width: 100%;
+            }
+
+            #nav-container ul li {
+                margin: 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* Adiciona borda entre os itens */
+            }
+
+            #nav-container ul li:last-child {
+                border-bottom: none; /* Remove a borda do último item */
+            }
+
+            #nav-container ul li a {
+                padding: 1rem;
+                font-size: 1rem;
+            }
+
+            #line {
+                display: none; /* Remove a linha de baixo em telas pequenas */
+            }
+        }
+    </style>
+</head>
+<body>
+    <section id="nav-test">
+        <div id="nav-container">
+            <ul>
+                <li><a href="#">Contatos</a></li>
+                <li><a href="#">Grupos</a></li>
+                <li><a href="#">Transmissão</a></li>
+                <li><a href="#">Abas</a></li>
+            </ul>
+            <div id="line"></div>
+        </div>
+    </section>
+</body>
+</html>

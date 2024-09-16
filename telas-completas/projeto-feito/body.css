@@ -1,0 +1,9 @@
+html, body {
+    background-color: #395F7D;
+    color: white;
+}
+
+.div-pai{
+    display: flex;
+    flex-direction: column;
+}
