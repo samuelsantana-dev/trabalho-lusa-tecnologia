@@ -35,7 +35,7 @@
             <div class="button-item-botoes-de-pr">
                 <p>Notas</p>
                  <label class="switch">
-                    <input type="checkbox" id="button-nota">
+                    <input type="checkbox" id="notas-button-input">
                     <span class="slider round">Notas</span>
                 </label>
             </div>
@@ -71,38 +71,68 @@
 
     </div>
     <!-- section de div notas -->
-    <section class="container">
-        <div id="div-nota" class="d-none">
-            <form id="form-notas-criar">
+    <section>
+        <div class="panel d-none" id="section-notas">
+            <!-- Filtros -->
+            <div class="filters">
+                <label for="note-type">Tipo:</label>
+                <select class="filter-tipo">
+                    <option value="todos">Todos</option>
+                    <option value="grupo">Nota do Grupo</option>
+                    <option value="individual">Nota Individual</option>
+                </select>
+            </div>
+            <div class="filters">
+                <label for="note-type">Ordenar:</label>
+                <select class="filter-tipo">
+                    <option value="todos">Todos</option>
+                    <option value="criação">Data de criação</option>
+                    <option value="individual">Tipo de status</option>
+                </select>
+            </div>
+            <!-- Botão Adicionar Nota -->
+            <button class="add-note-btn" id="button-nota" onclick=ouvirClick()>+ Adicionar Nota</button>
+            <!-- Resultado da Nota -->
+            <div class="note-card list-container-chatbot">
+                <div class="user-item note-card-header d-flex justify-content-between flex-column">
+                    <!-- Conteúdo da Nota -->
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Popup para Adicionar Nota -->
+    <section class="popup mt-5 d-none" id="div-nota">
+        <div class="popup-content">
+            <button class="close-popup" id="close-popup">&times;</button>
+            <form id="form-notas-criar"onclick="enviarFormulario()">
                 <div class="mb-3">
+                    <label for="opcao-notas" class="form-label">Opção</label>
                     <select name="opcao" id="opcao-notas" class="form-select">
-                        <option value="samuel">Samuel Santana</option>	
+                        <option value="individual">Individual</option>
+                        <option value="grupo">Grupo</option>
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="titulo" class="form-label">Titulo *</label>
+                    <label for="opcao-notas-name" class="form-label">Nome</label>
+                    <select name="opcao" id="opcao-notas-name" class="form-select">
+                        <option value="samuel">Samuel Santana</option>
+                        <option value="isaias">Isaias</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="titulo-notas" class="form-label">Título *</label>
                     <input type="text" class="form-control" id="titulo-notas" placeholder="Digite o texto">
                 </div>
                 <div class="mb-3">
                     <label for="notas-input" class="form-label">Notas *</label>
                     <textarea class="form-control" id="notas-input" rows="3"></textarea>
                 </div>
-                <input type="submit" id="button-enviar-form-notas" class="btn btn-primary"></input>
+                <button type="submit" id="button-enviar-form-notas" class="btn btn-primary">Enviar</button>
             </form>
         </div>
-        <hr>
-        <div id="div-resultado" class="d-none">
-            <div class="user-item">
-                <!-- Adicionar div -->
-                 <div></div>
-                <div class="user-actions">
-                    <button class="btn copy-btn" onclick="copyText(this)">Copiar</button>
-                    <button class="btn edit-btn" onclick="editText(this)">Editar</button>
-                    <button class="btn delete-btn" onclick="deleteUser(this)">Excluir</button>
-                </div>
-            </div>
-        </div>
     </section>
+
   
 
     <script src="script.js"></script>

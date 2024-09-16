@@ -147,6 +147,9 @@ filterTipo.addEventListener('change', (event) => {
 });
 
 // Evento de clique para mostrar o formulário de notas
+// buttonNota.addEventListener('click', () => {
+//     mostrarElemento(divNota);
+// })
 ouvirClick(buttonNota, () => {
     mostrarElemento(divNota);
 });

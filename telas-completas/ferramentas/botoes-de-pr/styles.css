@@ -1,4 +1,13 @@
 
+body {
+  font-family: Arial, sans-serif;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
 
 .container-botoes-de-pr {
   font-family: Arial, sans-serif;
@@ -86,3 +95,240 @@ input:checked + .slider:before {
 }
 
 
+
+.panel {
+  border-radius: 8px;
+  height: 100px;
+  width: 350px;
+  padding: 16px;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.panel-header h1 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.close-btn {
+  background-color: #0097A7;
+  border: none;
+  color: white;
+  padding: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.filters {
+  margin-bottom: 16px;
+}
+
+.filters label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.filter-btn {
+  background-color: #607D8B;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+.filter-btn.active {
+  background-color: #4CAF50;
+}
+
+.search-order {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.search-order input {
+  width: 60%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.search-order select {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.add-note-btn {
+  background-color: #00796B;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  width: 100%;
+  margin-bottom: 16px;
+  cursor: pointer;
+}
+
+.note-card {
+  background-color: #eceff1;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  color: #263238;
+}
+
+.note-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.note-card-header h3 {
+  font-size: 16px;
+  margin: 0;
+}
+
+.note-card-icons {
+  display: flex;
+  gap: 8px;
+}
+
+.note-card-icons svg {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.note-card-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.note-card-content p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-info img {
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  margin-right: 8px;
+}
+
+.status {
+  background-color: #388e3c;
+  color: white;
+  border-radius: 12px;
+  padding: 2px 8px;
+  font-size: 12px;
+}
+
+
+/*DIV RESULTADO*/
+.card {
+  background-color: #eceff1;
+  border-radius: 8px;
+  padding: 16px;
+  width: 300px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+}
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.card-header h3 {
+  font-size: 16px;
+  margin: 0;
+  color: #263238;
+}
+.card-header-icons {
+  display: flex;
+  gap: 8px;
+}
+.card-header-icons svg {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+.card-content {
+  margin-bottom: 8px;
+}
+.card-content label {
+  display: block;
+  font-size: 14px;
+  color: #263238;
+}
+.card-content input {
+  width: 100%;
+  padding: 4px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  margin-top: 4px;
+}
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card-footer img {
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+}
+.card-footer .status {
+  background-color: #388e3c;
+  color: white;
+  border-radius: 12px;
+  padding: 2px 8px;
+  font-size: 12px;
+}
+
+.list-container-chatbot {
+  margin-top: 1rem;
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ccc; 
+  padding: 10px;
+}
+
+/* List Item Styles */
+.list-item-chatbot {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.icon-chatbot {
+  margin-right: 10px;
+}
+
+.text-chatbot {
+  font-weight: bold;
+}
+
+.description-chatbot {
+  margin-left: auto;
+  font-size: 14px;
+  color: #888;
+}

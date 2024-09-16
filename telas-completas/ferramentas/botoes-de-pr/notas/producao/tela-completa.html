@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel de Notas</title>
+    <!-- CSS -->
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
@@ -11,9 +12,10 @@
 <body>
 
 <main>
-      
+    <!-- Seção Principal -->
     <section>
         <div class="panel">
+            <!-- Filtros -->
             <div class="filters">
                 <label for="note-type">Tipo:</label>
                 <select class="filter-tipo">
@@ -30,16 +32,18 @@
                     <option value="individual">Tipo de status</option>
                 </select>
             </div>
+            <!-- Botão Adicionar Nota -->
             <button class="add-note-btn" id="button-nota">+ Adicionar Nota</button>
-            <!-- Div admin resultado -->
+            <!-- Resultado da Nota -->
             <div class="note-card list-container-chatbot">
                 <div class="user-item note-card-header d-flex justify-content-between flex-column">
-                    <!-- div -->
+                    <!-- Conteúdo da Nota -->
                 </div>
             </div>
         </div>
     </section>
     
+    <!-- Popup para Adicionar Nota -->
     <section class="popup mt-5 d-none" id="div-nota">
         <div class="popup-content">
             <button class="close-popup" id="close-popup">&times;</button>
@@ -52,7 +56,7 @@
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="opcao-notas-name" class="form-label">Opção</label>
+                    <label for="opcao-notas-name" class="form-label">Nome</label>
                     <select name="opcao" id="opcao-notas-name" class="form-select">
                         <option value="samuel">Samuel Santana</option>
                         <option value="isaias">Isaias</option>
@@ -66,14 +70,13 @@
                     <label for="notas-input" class="form-label">Notas *</label>
                     <textarea class="form-control" id="notas-input" rows="3"></textarea>
                 </div>
-                
                 <button type="submit" id="button-enviar-form-notas" class="btn btn-primary">Enviar</button>
             </form>
         </div>
     </section>
 </main>
 
-
+<!-- JavaScript -->
 <script src="script.js"></script>
 </body>
 </html>
