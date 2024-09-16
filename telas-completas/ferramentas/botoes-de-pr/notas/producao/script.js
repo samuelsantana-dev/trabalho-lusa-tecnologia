@@ -15,41 +15,57 @@ function ouvirClick(elemento, funcao) {
 }
 
 // Função para criar, adicionar e filtrar notas
-function criarDivsNotas(text, notas, tipo, name, done = 0, save = 1) {
+function criarDivsNotas(text, notas, tipo, name, createdAt, createTime, done = 0, save = 1) {
     const todo = document.createElement("div");
     todo.classList.add("card");
 
-    const todoTitle = document.createElement("h3");
+    const cardBody = document.createElement("div");
+    cardBody.classList.add("card-body");
+    todo.appendChild(cardBody);
+
+    const todoTitle = document.createElement("h5");
+    todoTitle.classList.add("card-title");
     todoTitle.innerText = text;
-    todo.appendChild(todoTitle);
+    cardBody.appendChild(todoTitle);
 
     const textName = document.createElement("h3");
+    textName.classList.add("card-text");
     textName.innerText = name;
-    todo.appendChild(textName);
-
-    const statusButton = document.createElement("button");
-    statusButton.classList.add("status");
-    statusButton.innerText = tipo;
-    todo.appendChild(statusButton);
+    cardBody.appendChild(textName);
 
     const todoText = document.createElement("p");
+    todoText.classList.add("card-text");
     todoText.innerText = notas;
-    todo.appendChild(todoText);
+    cardBody.appendChild(todoText);
+
+    const createdP = document.createElement("p");
+    createdP.classList.add("card-text");
+    createdP.innerText = `Criação: ${createdAt} - ${createTime}`;
+    cardBody.appendChild(createdP);
+
+    const buttonGroup = document.createElement("div");
+    buttonGroup.classList.add("d-flex", "justify-content-end");
+    cardBody.appendChild(buttonGroup);
+
+    const statusButton = document.createElement("button");
+    statusButton.classList.add("btn", "btn-sm", "btn-outline-secondary", "status");
+    statusButton.innerText = tipo;
+    cardBody.appendChild(statusButton);
 
     const doneBtn = document.createElement("button");
-    doneBtn.classList.add("finish-todo");
+    doneBtn.classList.add("btn", "btn-sm", "btn-outline-secondary");
     doneBtn.innerHTML = '<i class="fa-solid fa-check"></i>';
-    todo.appendChild(doneBtn);
+    buttonGroup.appendChild(doneBtn);
 
     const editBtn = document.createElement("button");
-    editBtn.classList.add("edit-todo");
+    editBtn.classList.add("btn", "btn-sm", "btn-outline-secondary");
     editBtn.innerHTML = '<i class="fa-solid fa-pen"></i>';
-    todo.appendChild(editBtn);
+    buttonGroup.appendChild(editBtn);
 
     const deleteBtn = document.createElement("button");
-    deleteBtn.classList.add("remove-todo");
+    deleteBtn.classList.add("btn", "btn-sm", "btn-outline-secondary");
     deleteBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
-    todo.appendChild(deleteBtn);
+    buttonGroup.appendChild(deleteBtn);
 
     userItem.appendChild(todo);
 
@@ -58,7 +74,7 @@ function criarDivsNotas(text, notas, tipo, name, done = 0, save = 1) {
     }
 
     if (save) {
-        saveTodoLocalStorage({ text: text, notas: notas, tipo: tipo, name: name, done: done });
+        saveTodoLocalStorage({ text: text, notas: notas, tipo: tipo, name: name, done: done, createdAt: createdAt, createTime: createTime });
     }
 
     // Adicionar funcionalidade aos botões
@@ -75,8 +91,7 @@ function criarDivsNotas(text, notas, tipo, name, done = 0, save = 1) {
         todo.remove();
         updateTodoLocalStorage();
     });
-}
-
+    }
 const filterTodosSelect = (filterValue) => {
     const divTodo = document.querySelectorAll('.card');
     const todosLocalStorage = getTodosLocalStorage();
@@ -126,7 +141,7 @@ const filterTodosSelect = (filterValue) => {
 }
 
 // Evento para filtrar
-const filterTipo = document.querySelector('#filter-tipo');
+const filterTipo = document.querySelector('.filter-tipo');
 filterTipo.addEventListener('change', (event) => {
     filterTodosSelect(event.target.value);
 });
@@ -144,7 +159,11 @@ formulario.addEventListener('submit', (event) => {
     const inputTipo = document.querySelector('#opcao-notas').value;
     const inputTipoName = document.querySelector('#opcao-notas-name').value;
 
-    criarDivsNotas(inputText, inputTextAreaNotas, inputTipo, inputTipoName);
+    // Data e hora
+    const createdAt = new Date().toLocaleDateString();
+    const createTime = new Date().toLocaleTimeString();
+
+    criarDivsNotas(inputText, inputTextAreaNotas, inputTipo, inputTipoName, createdAt, createTime);
     formulario.reset();
 });
 
@@ -166,8 +185,10 @@ const updateTodoLocalStorage = () => {
         const todoText = todoElement.querySelector('p').innerText;
         const tipo = todoElement.querySelector('.status').innerText;
         const name = todoElement.querySelector('h3').innerText;
+        const createdAt = new Date().toLocaleDateString();
+        const createTime = new Date().toLocaleTimeString();
         const done = todoElement.classList.contains('done');
-        todos.push({ text: todoTitle, notas: todoText, tipo: tipo, name: name, done: done ? 1 : 0 });
+        todos.push({ text: todoTitle, notas: todoText, tipo: tipo, name: name, createdAt: createdAt, createTime: createTime, done: done ? 1 : 0 });
     });
     localStorage.setItem("notas", JSON.stringify(todos));
 }
@@ -175,22 +196,22 @@ const updateTodoLocalStorage = () => {
 const loadTodos = () => {
     const todos = getTodosLocalStorage();
     todos.forEach((todo) => {
-        criarDivsNotas(todo.text, todo.notas, todo.tipo, todo.name, todo.done, 0);
+        criarDivsNotas(todo.text, todo.notas, todo.tipo, todo.name, todo.createdAt, todo.createTime, todo.done, 0);
     });
 }
 window.addEventListener('load', loadTodos);
 
 // Função para editar uma nota
 const editTodo = (todoElement) => {
-    const todoTitle = todoElement.querySelector('h3').innerText;
-    const todoText = todoElement.querySelector('p').innerText;
-
-    const newTitle = prompt("Edite o título:", todoTitle);
-    const newText = prompt("Edite a nota:", todoText);
-
+    const todoTitle = todoElement.querySelector('h3');
+    const todoText = todoElement.querySelector('p');
+  
+    const newTitle = prompt("Edite o título:", todoTitle.innerText);
+    const newText = prompt("Edite a nota:", todoText.innerText);
+  
     if (newTitle !== null && newText !== null) {
-        todoElement.querySelector('h3').innerText = newTitle;
-        todoElement.querySelector('p').innerText = newText;
-        updateTodoLocalStorage();
+      todoTitle.innerText = newTitle; // Atualiza o título do elemento
+      todoText.innerText = newText; // Atualiza o texto do elemento
+      updateTodoLocalStorage(); // Atualiza o localStorage com as mudanças
     }
-}
+  };

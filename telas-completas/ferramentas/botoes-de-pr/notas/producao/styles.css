@@ -13,12 +13,10 @@ main {
 }
 
 .panel {
-    background-color: #37474F;
     border-radius: 8px;
     height: 100px;
     width: 350px;
     padding: 16px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .panel-header {
