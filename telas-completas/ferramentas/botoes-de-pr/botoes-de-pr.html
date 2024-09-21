@@ -10,11 +10,6 @@
 </head>
 <body>
 
-    <section>
-        <select name="" id="">
-            <option value="samuel">Samuel Santana</option>
-        </select>
-    </section>
     <!-- Div dos botões de pr -->
     <div class="container-botoes-de-pr">
         <div class="button-list-botoes-de-pr">
@@ -35,7 +30,7 @@
             <div class="button-item-botoes-de-pr">
                 <p>Notas</p>
                  <label class="switch">
-                    <input type="checkbox" id="notas-button-input">
+                    <input type="checkbox" id="notas-button-input" onclick="inputCheck()">
                     <span class="slider round">Notas</span>
                 </label>
             </div>
@@ -70,11 +65,10 @@
         </div>
 
     </div>
-    <!-- section de div notas -->
-    <section>
-        <div class="panel d-none" id="section-notas">
-            <!-- Filtros -->
-            <div class="filters">
+     <!-- section de div notas -->
+     <section class="panel d-none" id="section-notas">
+        <div class="popup-content">
+            <div class="filters" onclick="filtrarTipo()">
                 <label for="note-type">Tipo:</label>
                 <select class="filter-tipo">
                     <option value="todos">Todos</option>
@@ -90,22 +84,19 @@
                     <option value="individual">Tipo de status</option>
                 </select>
             </div>
-            <!-- Botão Adicionar Nota -->
-            <button class="add-note-btn" id="button-nota" onclick=ouvirClick()>+ Adicionar Nota</button>
-            <!-- Resultado da Nota -->
+            <button class="add-note-btn" id="button-nota" onclick="ouvirClick()">+ Adicionar Nota</button>
             <div class="note-card list-container-chatbot">
                 <div class="user-item note-card-header d-flex justify-content-between flex-column">
-                    <!-- Conteúdo da Nota -->
                 </div>
             </div>
         </div>
     </section>
-    
+
     <!-- Popup para Adicionar Nota -->
     <section class="popup mt-5 d-none" id="div-nota">
         <div class="popup-content">
             <button class="close-popup" id="close-popup">&times;</button>
-            <form id="form-notas-criar"onclick="enviarFormulario()">
+            <div id="form-notas-criar" >
                 <div class="mb-3">
                     <label for="opcao-notas" class="form-label">Opção</label>
                     <select name="opcao" id="opcao-notas" class="form-select">
@@ -128,8 +119,8 @@
                     <label for="notas-input" class="form-label">Notas *</label>
                     <textarea class="form-control" id="notas-input" rows="3"></textarea>
                 </div>
-                <button type="submit" id="button-enviar-form-notas" class="btn btn-primary">Enviar</button>
-            </form>
+                <button type="button" id="button-enviar-form-notas" class="btn btn-primary" onclick="enviarFormulario()">Enviar</button>
+            </div>
         </div>
     </section>
 

@@ -213,8 +213,8 @@ const editTodo = (todoElement) => {
     const newText = prompt("Edite a nota:", todoText.innerText);
   
     if (newTitle !== null && newText !== null) {
-      todoTitle.innerText = newTitle; // Atualiza o título do elemento
-      todoText.innerText = newText; // Atualiza o texto do elemento
-      updateTodoLocalStorage(); // Atualiza o localStorage com as mudanças
+      todoTitle.innerText = newTitle;
+      todoText.innerText = newText;
+      updateTodoLocalStorage();
     }
   };
