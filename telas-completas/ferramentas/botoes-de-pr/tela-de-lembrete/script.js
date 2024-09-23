@@ -1,3 +1,4 @@
+// Função Principal
 function agendarLembrete() {
   const batePapo = document.getElementById('batePapo').value;
   const assunto = document.getElementById('assunto').value;
@@ -33,44 +34,52 @@ function agendarLembrete() {
 }
 
 function createCard(camp, index) {
-  const card = document.createElement('div');
-  card.className = 'card mt-2';
+    const card = document.createElement('div');
+    card.className = 'card mt-2';
+  
+    card.innerHTML = `
+        <div class="flex align-items-center justify-content-between">
+            <div class="flex align-items-center">
+                <div class="col ms-1 scrollable-content">
+                    <div>${camp.assunto}</div>
+                    <div>
+                        <b class="text-dark">Descrição: </b>
+                        <span>${camp.descricao}</span>
+                    </div>
+                    <div>
+                        <b class="text-dark">Bate-papo: </b>
+                        <span>${camp.batePapo}</span>
+                    </div>
+                    <div>
+                        <b class="text-dark">Agendamento: </b>
+                        <span>${camp.dataHora}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="flex align-items-center justify-content-between">
+                <span class="cursor remove-icon">&#128465;</span>
+                <span class="cursor edit-icon">&#9997;</span>
+                <span class="cursor duplicate-icon">&#128260;</span>
+            </div>
+        </div>
+    `;
+  
+    card.querySelector('.remove-icon').addEventListener('click', function () {
+        removerLembrete(index);
+    });
+  
+    card.querySelector('.duplicate-icon').addEventListener('click', function () {
+      duplicarLembrete(camp);
+    });
+  
+    return card;
+  }  
 
-  card.innerHTML = `
-      <div class="flex align-items-center justify-content-between">
-          <div class="flex align-items-center">
-              <div class="col ms-1">
-                  <div>${camp.assunto}</div>
-                  <div>
-                      <b class="text-dark">Descrição: </b>
-                      <span>${camp.descricao}</span>
-                  </div>
-                  <div>
-                      <b class="text-dark">Bate-papo: </b>
-                      <span>${camp.batePapo}</span>
-                  </div>
-                  <div>
-                      <b class="text-dark">Agendamento: </b>
-                      <span>${camp.dataHora}</span>
-                  </div>
-              </div>
-          </div>
-          <div class="flex align-items-center justify-content-between">
-              <span class="cursor remove-icon">&#128465;</span>
-              <span class="cursor edit-icon">&#9997;</span>
-          </div>
-      </div>
-  `;
-
-  card.querySelector('.remove-icon').addEventListener('click', function () {
-      removerLembrete(index);
-  });
-
-  card.querySelector('.edit-icon').addEventListener('click', function () {
-      edit(camp);
-  });
-
-  return card;
+function duplicarLembrete(camp) {
+    const novoLembrete = { ...camp };
+    salvarNoLocalStorage(novoLembrete);
+    const salvarLembrete = getItemLocalStorage();
+    document.getElementById('campanhasContainer').appendChild(createCard(novoLembrete, salvarLembrete.length - 1));
 }
 
 function getItemLocalStorage() {
@@ -98,9 +107,41 @@ function removerLembrete(index) {
   salvarLembrete.splice(index, 1);
   localStorage.setItem("lembretes", JSON.stringify(salvarLembrete));
   carregarDoLocalStorage();
-
-  
 }
+
+function searchLocalStorage() {
+    const lembreteStorage = getItemLocalStorage();
+    const inputSeach = document.getElementById('searchInputLembretes').value.toLowerCase();
+    const selectOrder = document.querySelector('select').value;
+
+    // Filtra os lembretes
+    const filteredLocalStorage = lembreteStorage.filter(lembrete => 
+        lembrete.assunto.toLowerCase().includes(inputSeach) ||
+        lembrete.descricao.toLowerCase().includes(inputSeach) ||
+        lembrete.batePapo.toLowerCase().includes(inputSeach) ||
+        lembrete.dataHora.toLowerCase().includes(inputSeach)
+    );
+
+    // Ordena os lembretes
+    switch (selectOrder) {
+        case "Data":
+            filteredLocalStorage.sort((a, b) => new Date(a.dataHora) - new Date(b.dataHora));
+            break;
+        case "Título":
+            filteredLocalStorage.sort((a, b) => a.assunto.localeCompare(b.assunto));
+            break;
+        default:
+            break;
+    }
+
+    // Atualiza o container
+    const container = document.getElementById('campanhasContainer');
+    container.innerHTML = '';
+    filteredLocalStorage.forEach((lembrete, index) => {
+        container.appendChild(createCard(lembrete, index));
+    });
+}
+
 
 // Chama a função para carregar lembretes ao carregar a página
 window.onload = carregarDoLocalStorage;

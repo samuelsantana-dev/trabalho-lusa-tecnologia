@@ -5,11 +5,83 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Adicionar Lembrete</title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .search-container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    }
+
+    .search-container input {
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        outline: none;
+        background-color: #34495e;
+        color: white;
+    }
+
+    .search-container select {
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        outline: none;
+        background-color: #34495e;
+        color: white;
+        cursor: pointer;
+    }
+
+    .scrollable-content {
+  max-height: 200px; /* Ajuste a altura conforme necessário */
+  overflow-y: auto; /* Adiciona a barra de rolagem vertical */
+}
+
+.list-container-chatbot {
+    margin-top: 1rem;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ccc; 
+    padding: 10px;
+  }
+  
+  /* List Item Styles */
+  .list-item-chatbot {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .icon-chatbot {
+    margin-right: 10px;
+  }
+  
+  .text-chatbot {
+    font-weight: bold;
+  }
+  
+  .description-chatbot {
+    margin-left: auto;
+    font-size: 14px;
+    color: #888;
+  }
+  </style>
 </head>
 <body>
   <div class="container mt-5">
+
+    <div>
+        <div class="search-container">
+          <input type="text" placeholder="Digite aqui..." id="searchInputLembretes" oninput="searchLocalStorage()">
+          <span>Ordernar:</span>
+          <select onchange="searchLocalStorage()">
+            <option value="Título">Título</option>
+            <option value="Data">Data</option>
+        </select>
+        </div>
+    </div>
     <!-- Botão para abrir o modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#lembreteModal">
+    <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target="#lembreteModal">
       Adicionar Lembrete
     </button>
 
@@ -55,9 +127,14 @@
       </div>
     </div>
 
-    <div id="campanhasContainer">
+    <div class="note-card list-container-chatbot">
+      <div class="user-item note-card-header d-flex justify-content-between flex-column">
+        <div id="campanhasContainer">
         
-    </div>
+        </div>
+      </div>
+  </div>
+   
   </div>
 
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
