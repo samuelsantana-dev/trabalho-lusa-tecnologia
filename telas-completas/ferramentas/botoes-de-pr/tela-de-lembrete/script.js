@@ -25,15 +25,15 @@ function agendarLembrete() {
   setTimeout(() => {
       alert(`Lembrete: ${assunto}\nDescrição: ${descricao}\nBate-papo: ${batePapo}`);
       console.log(`Lembrete: ${assunto}\nDescrição: ${descricao}\nBate-papo: ${batePapo}\nData e Hora: ${dataHora}`);
-      document.getElementById('campanhasContainer').appendChild(createCard(camp, index));
+      document.getElementById('campanhasContainer').appendChild(createCardLembrete(camp, index));
   }, tempoRestante);
 
-  salvarNoLocalStorage(camp);
+  lembreteSalvarNoLocalStorage(camp);
   alert(`Lembrete agendado para ${dataHora}.`);
   $('#lembreteModal').modal('hide');
 }
 
-function createCard(camp, index) {
+function createCardLembrete(camp, index) {
     const card = document.createElement('div');
     card.className = 'card mt-2';
   
@@ -77,40 +77,40 @@ function createCard(camp, index) {
 
 function duplicarLembrete(camp) {
     const novoLembrete = { ...camp };
-    salvarNoLocalStorage(novoLembrete);
-    const salvarLembrete = getItemLocalStorage();
-    document.getElementById('campanhasContainer').appendChild(createCard(novoLembrete, salvarLembrete.length - 1));
+    lembreteSalvarNoLocalStorage(novoLembrete);
+    const salvarLembrete = lembreteGetItemLocalStorage();
+    document.getElementById('campanhasContainer').appendChild(createCardLembrete(novoLembrete, salvarLembrete.length - 1));
 }
 
-function getItemLocalStorage() {
+function lembreteGetItemLocalStorage() {
   const salvarLembrete = JSON.parse(localStorage.getItem("lembretes")) || [];
   return salvarLembrete;
 }
 
-function salvarNoLocalStorage(todo) {
-  const salvarLembrete = getItemLocalStorage();
+function lembreteSalvarNoLocalStorage(todo) {
+  const salvarLembrete = lembreteGetItemLocalStorage();
   salvarLembrete.push(todo);
   localStorage.setItem("lembretes", JSON.stringify(salvarLembrete));
 }
 
-function carregarDoLocalStorage() {
-  const salvarLembrete = getItemLocalStorage();
+function lembreteCarregarDoLocalStorage() {
+  const salvarLembrete = lembreteGetItemLocalStorage();
   salvarLembrete.forEach((lembrete, index) => {
-      document.getElementById('campanhasContainer').appendChild(createCard(lembrete, index));
+      document.getElementById('campanhasContainer').appendChild(createCardLembrete(lembrete, index));
   });
 }
 
 function removerLembrete(index) {
   const container = document.getElementById('campanhasContainer');
   container.innerHTML = '';
-  const salvarLembrete = getItemLocalStorage();
+  const salvarLembrete = lembreteGetItemLocalStorage();
   salvarLembrete.splice(index, 1);
   localStorage.setItem("lembretes", JSON.stringify(salvarLembrete));
-  carregarDoLocalStorage();
+  lembreteCarregarDoLocalStorage();
 }
 
-function searchLocalStorage() {
-    const lembreteStorage = getItemLocalStorage();
+function lembreteSearchLocalStorage() {
+    const lembreteStorage = lembreteGetItemLocalStorage();
     const inputSeach = document.getElementById('searchInputLembretes').value.toLowerCase();
     const selectOrder = document.querySelector('select').value;
 
@@ -138,10 +138,10 @@ function searchLocalStorage() {
     const container = document.getElementById('campanhasContainer');
     container.innerHTML = '';
     filteredLocalStorage.forEach((lembrete, index) => {
-        container.appendChild(createCard(lembrete, index));
+        container.appendChild(createCardLembrete(lembrete, index));
     });
 }
 
 
 // Chama a função para carregar lembretes ao carregar a página
-window.onload = carregarDoLocalStorage;
+window.onload = lembreteCarregarDoLocalStorage;

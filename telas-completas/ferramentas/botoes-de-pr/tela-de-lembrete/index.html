@@ -32,9 +32,9 @@
     }
 
     .scrollable-content {
-  max-height: 200px; /* Ajuste a altura conforme necessário */
-  overflow-y: auto; /* Adiciona a barra de rolagem vertical */
-}
+    max-height: 200px;
+    overflow-y: auto;
+  }
 
 .list-container-chatbot {
     margin-top: 1rem;
@@ -72,9 +72,9 @@
 
     <div>
         <div class="search-container">
-          <input type="text" placeholder="Digite aqui..." id="searchInputLembretes" oninput="searchLocalStorage()">
+          <input type="text" placeholder="Digite aqui..." id="searchInputLembretes" oninput="lembreteSearchLocalStorage()">
           <span>Ordernar:</span>
-          <select onchange="searchLocalStorage()">
+          <select onchange="lembreteSearchLocalStorage()">
             <option value="Título">Título</option>
             <option value="Data">Data</option>
         </select>
@@ -133,7 +133,7 @@
         
         </div>
       </div>
-  </div>
+    </div>
    
   </div>
 
