@@ -1,5 +1,5 @@
 {
-  "name": "zapzuite-teste",
+  "name": "projeto-pessoal",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -10,7 +10,6 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
-    "bootstrap": "^5.3.0",
     "vue": "^3.4.29",
     "vue-router": "^4.3.3"
   },
