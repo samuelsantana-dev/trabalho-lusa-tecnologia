@@ -2,28 +2,28 @@
 
 import { onMounted, ref  } from 'vue';
 
-const notaShowCadastro = ref(false);
+const lembreteShowCadastro = ref(false);
 
-function toggleNotaShow() {
-  notaShowCadastro.value = !notaShowCadastro.value;
+function toggleLembreteShow() {
+  lembreteShowCadastro.value = !lembreteShowCadastro.value;
 }
 
 function cancelCadastro() {
-  notaShowCadastro.value = false;
+  lembreteShowCadastro.value = false;
 }
 
 /**FUNÇÕES GLOBAIS */
 async function contatosListarInput(tipo) {
     const todosContatos = await filtrarContatos();
     
-    if (tipo === 'nota') {
-        const opcaoNota = document.querySelector('#titulo-notas');
-        opcaoNota.innerHTML = ''; // Limpa opções anteriores
+    if (tipo === 'lembrete') {
+        const opcaoLembrete = document.querySelector('#opcao-lembrete-bate-papo');
+        opcaoLembrete.innerHTML = ''; // Limpa opções anteriores
         todosContatos.forEach(contato => {
             const option = document.createElement('option');
             option.value = contato.nome; 
             option.text = contato.nome;   
-            opcaoNota.appendChild(option);
+            opcaoLembrete.appendChild(option);
         });
     } else if (tipo === 'notas') {
         const opcaoNotasContato = document.querySelector('#opcao-notas-name');
@@ -98,23 +98,42 @@ async function extractGroupContacts(chat, option = 'todos'){
 }
 
 
-function agendarNota() {
-  const batePapo = document.getElementById('titulo-notas').value;
-  const assunto = document.getElementById('notas-input').value;
-  const descricao = document.getElementById('opcao-notas').value;
-  const dataHora = document.getElementById('opcao-notas-name').value;
-  const tipo = document.getElementById('opcao-nota-tipo').value;
-  console.log('teste nota', batePapo, assunto, descricao, dataHora, tipo);
+function agendarLembrete() {
+  const batePapo = document.getElementById('opcao-lembrete-bate-papo').value;
+  const assunto = document.getElementById('assunto').value;
+  const descricao = document.getElementById('descricao').value;
+  const dataHora = document.getElementById('dataHora').value;
+  const tipo = document.getElementById('opcao-lembrete-tipo').value;
+  console.log('teste lembrete', batePapo, assunto, descricao, dataHora);
+
+  if (!dataHora) {
+      alert('Por favor, selecione uma data e hora válidas.');
+      return;
+  }
+
+  const dataHoraLembrete = new Date(dataHora);
+  const agora = new Date();
+  const tempoRestante = dataHoraLembrete - agora;
+
+  if (tempoRestante < 0) {
+      alert('Por favor, selecione uma data e hora no futuro.');
+      return;
+  }
 
   const camp = { batePapo, assunto, descricao, dataHora, tipo };
   console.log('camp', camp);
   const index = 0;
 
-  document.getElementById('div-resposta').appendChild(createCardNota(camp, index));
-  notaSalvarNoLocalStorage(camp);
+  setTimeout(() => {
+      alert(`Lembrete: ${assunto}\nDescrição: ${descricao}\nBate-papo: ${batePapo}`);
+      document.getElementById('div-resposta').appendChild(createCardLembrete(camp, index));
+  }, tempoRestante);
+
+  lembreteSalvarNoLocalStorage(camp);
+  alert(`Lembrete agendado para ${dataHora}.`);
 }
 
-function createCardNota(camp, index) {
+function createCardLembrete(camp, index) {
     const card = document.createElement('div');
     card.className = 'card mt-2';
   
@@ -122,18 +141,18 @@ function createCardNota(camp, index) {
             <div class="flex align-items-center justify-content-between">
             <div class="flex align-items-center">
                 <div class="col ms-1 scrollable-content">
-                    <div class="titulo">${camp.assunto}</div>
+                    <div>${camp.assunto}</div>
                     <div>
                         <b class="text-dark">Descrição: </b>
-                        <span class="descricao">${camp.descricao}</span>
+                        <span>${camp.descricao}</span>
                     </div>
                     <div>
                         <b class="text-dark">Bate-papo: </b>
-                        <span class="batePapo">${camp.batePapo}</span>
+                        <span>${camp.batePapo}</span>
                     </div>
                     <div>
                         <b class="text-dark">Agendamento: </b>
-                        <span class="dataHora">${camp.dataHora}</span>
+                        <span>${camp.dataHora}</span>
                     </div>
                     <div>
                         <b class="text-dark">Tipo: </b>
@@ -150,107 +169,70 @@ function createCardNota(camp, index) {
     `;
   
     card.querySelector('.remove-icon').addEventListener('click', function () {
-        removerNota(index);
+        removerLembrete(index);
     });
   
     card.querySelector('.duplicate-icon').addEventListener('click', function () {
-      duplicarNota(camp);
+      duplicarLembrete(camp);
     });
   
-    card.querySelector('.edit-icon').addEventListener('click', function () {
-      editarNota(camp, index);
-    });
     return card;
   }  
 
-function duplicarNota(camp) {
-    const novoNota = { ...camp };
-    console.log('copia do nota', novoNota);
-    notaSalvarNoLocalStorage(novoNota);
-    const salvarNota = notaGetItemLocalStorage();
-    document.getElementById('div-resposta').appendChild(createCardNota(novoNota, salvarNota.length - 1));
-}
-
-function editarNota(camp, index, todoElement) {
-    const editNota = { ...camp };
-    console.log('editNota', editNota);
-
-    // Criar prompts para capturar novos valores
-    const novoTitulo = prompt("Edite o título da nota:", editNota.titulo);
-    const novoAssunto = prompt("Edite o assunto da nota:", editNota.assunto);
-    const novaDescricao = prompt("Edite a descrição da nota:", editNota.descricao);
-    const novaDataHora = prompt("Edite a data e hora da nota:", editNota.dataHora);
-    const novoTipo = prompt("Edite o tipo da nota:", editNota.tipo);
-
-    // Verificar se os novos valores são diferentes de null
-    if (novoTitulo !== null) editNota.titulo = novoTitulo;
-    if (novoAssunto !== null) editNota.assunto = novoAssunto;
-    if (novaDescricao !== null) editNota.descricao = novaDescricao;
-    if (novaDataHora !== null) editNota.dataHora = novaDataHora;
-    if (novoTipo !== null) editNota.tipo = novoTipo;
-
-    // Atualizar a nota no localStorage
-    const notas = JSON.parse(localStorage.getItem('notas')) || [];
-    notas[index] = editNota;
-    localStorage.setItem('notas', JSON.stringify(notas));
-
-    // Atualizar a exibição da nota no elemento HTML
-    todoElement.querySelector('.titulo').textContent = editNota.titulo;
-    todoElement.querySelector('.assunto').textContent = editNota.assunto;
-    todoElement.querySelector('.descricao').textContent = editNota.descricao;
-    todoElement.querySelector('.dataHora').textContent = editNota.dataHora;
-    todoElement.querySelector('.status').textContent = editNota.tipo;
-
-    console.log('Nota editada com sucesso:', editNota);
+function duplicarLembrete(camp) {
+    const novoLembrete = { ...camp };
+    console.log('copia do lembrete', novoLembrete);
+    lembreteSalvarNoLocalStorage(novoLembrete);
+    const salvarLembrete = lembreteGetItemLocalStorage();
+    document.getElementById('div-resposta').appendChild(createCardLembrete(novoLembrete, salvarLembrete.length - 1));
 }
 
 
-function removerNota(index) {
-  const container = document.getElementById('div-resposta');
-  container.innerHTML = '';
-  const salvarNota = notaGetItemLocalStorage();
-  salvarNota.splice(index, 1);
-  localStorage.setItem("notas", JSON.stringify(salvarNota));
-  notaCarregarDoLocalStorage();
+function lembreteGetItemLocalStorage() {
+  const salvarLembrete = JSON.parse(localStorage.getItem("lembretes")) || [];
+  return salvarLembrete;
 }
 
-
-function notaGetItemLocalStorage() {
-  const salvarNota = JSON.parse(localStorage.getItem("notas")) || [];
-  return salvarNota;
+function lembreteSalvarNoLocalStorage(todo) {
+  const salvarLembrete = lembreteGetItemLocalStorage();
+  salvarLembrete.push(todo);
+  localStorage.setItem("lembretes", JSON.stringify(salvarLembrete));
 }
 
-function notaSalvarNoLocalStorage(todo) {
-  const salvarNota = notaGetItemLocalStorage();
-  salvarNota.push(todo);
-  localStorage.setItem("notas", JSON.stringify(salvarNota));
-}
-
-function notaCarregarDoLocalStorage() {
-  const salvarNota = notaGetItemLocalStorage();
-  salvarNota.forEach((nota, index) => {
-      document.getElementById('div-resposta').appendChild(createCardNota(nota, index));
+function lembreteCarregarDoLocalStorage() {
+  const salvarLembrete = lembreteGetItemLocalStorage();
+  salvarLembrete.forEach((lembrete, index) => {
+      document.getElementById('div-resposta').appendChild(createCardLembrete(lembrete, index));
   });
 }
 
 onMounted(() => {
-  notaCarregarDoLocalStorage();
+  lembreteCarregarDoLocalStorage();
 });
 
-function notaSearchLocalStorage() {
-    const notaStorage = notaGetItemLocalStorage();
-    const inputSeach = document.getElementById('searchInputNota').value.toLowerCase();
+function removerLembrete(index) {
+  const container = document.getElementById('div-resposta');
+  container.innerHTML = '';
+  const salvarLembrete = lembreteGetItemLocalStorage();
+  salvarLembrete.splice(index, 1);
+  localStorage.setItem("lembretes", JSON.stringify(salvarLembrete));
+  lembreteCarregarDoLocalStorage();
+}
+
+function lembreteSearchLocalStorage() {
+    const lembreteStorage = lembreteGetItemLocalStorage();
+    const inputSeach = document.getElementById('searchInputLembretes').value.toLowerCase();
     const selectOrder = document.querySelector('select-order').value;
 
-    // Filtra os notas
-    const filteredLocalStorage = notaStorage.filter(nota => 
-        nota.assunto.toLowerCase().includes(inputSeach) ||
-        nota.descricao.toLowerCase().includes(inputSeach) ||
-        nota.batePapo.toLowerCase().includes(inputSeach) ||
-        nota.dataHora.toLowerCase().includes(inputSeach)
+    // Filtra os lembretes
+    const filteredLocalStorage = lembreteStorage.filter(lembrete => 
+        lembrete.assunto.toLowerCase().includes(inputSeach) ||
+        lembrete.descricao.toLowerCase().includes(inputSeach) ||
+        lembrete.batePapo.toLowerCase().includes(inputSeach) ||
+        lembrete.dataHora.toLowerCase().includes(inputSeach)
     );
 
-    // Ordena os notas
+    // Ordena os lembretes
     switch (selectOrder) {
         case "Data":
             filteredLocalStorage.sort((a, b) => new Date(a.dataHora) - new Date(b.dataHora));
@@ -265,14 +247,14 @@ function notaSearchLocalStorage() {
     // Atualiza o container
     const container = document.getElementById('div-resposta');
     container.innerHTML = '';
-    filteredLocalStorage.forEach((nota, index) => {
-        container.appendChild(createCardNota(nota, index));
+    filteredLocalStorage.forEach((lembrete, index) => {
+        container.appendChild(createCardLembrete(lembrete, index));
     });
 }
 
-const notasFilterTodosSelect = (filterValue) => {
+const lembretesFilterTodosSelect = (filterValue) => {
     const divTodos = document.querySelectorAll('.card');
-    let todosLocalStorage = notaGetItemLocalStorage();
+    let todosLocalStorage = lembreteGetItemLocalStorage();
 
     divTodos.forEach((todo) => {
         const statusElement = todo.querySelector('.status');
@@ -293,205 +275,80 @@ const notasFilterTodosSelect = (filterValue) => {
     });
 }
 
-const filtrarTipoNota = () => {
+const filtrarTipoLembretes = () => {
     const filterTipo = document.querySelector('.filter-tipo');
     filterTipo.addEventListener('change', (event) => {
-        notasFilterTodosSelect(event.target.value);
+        lembretesFilterTodosSelect(event.target.value);
     });
 }
+
+
 </script>
 
-
-<style scoped>
-
-/* Estilo da Seção de Notas */
-.panel {
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin-bottom: 20px;
-}
-
-/* Estilo do Botão de Mostrar Teleport */
-button {
-    background-color: #007bff;
-    color: #ffffff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 15px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-/* Estilo da Pop-up */
-.popup-content {
-    margin-top: 20px;
-}
-
-/* Estilo dos Filtros */
-.filters {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 15px;
-}
-
-.filter-tipo {
-    margin-left: 10px;
-}
-
-/* Estilo da Cartão de Nota */
-.note-card {
-    margin-top: 20px;
-}
-
-.user-item {
-    padding: 15px;
-    background-color: #f1f1f1;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-
-/* Estilo do Modal */
-.modal-content {
-    border-radius: 8px;
-}
-
-.modal-header {
-    background-color: #007bff;
-    color: white;
-    padding: 15px;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-}
-
-.modal-body {
-    padding: 20px;
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-.form-control {
-    border-radius: 5px;
-    border: 1px solid #ced4da;
-    padding: 10px;
-    width: 100%;
-}
-
-/* Estilo para Botões do Modal */
-.modal-footer {
-    justify-content: space-between;
-}
-
-.btn-danger {
-    background-color: #dc3545;
-    border: none;
-}
-
-.notas-btn-primary {
-    background-color: #007bff;
-    border: none;
-}
-
-.btn-danger:hover, .notas-btn-primary:hover {
-    opacity: 0.9;
-}
-
-/* Estilo de Mensagens de Ajuda */
-.notas-form-text {
-    font-size: 12px;
-    color: #6c757d;
-}
-
-.list-container-chatbot-notas {
-  margin-top: 1rem;
-  max-height: 400px;
-  overflow-y: auto;
-  border: 1px solid #ccc; 
-  padding: 10px;
-}
-</style>
-
 <template>
-
- <section class="panel" id="section-notas">
-      <button @click="toggleNotaShow">mostrar teleport</button>
+  <section class="panel" id="section-notas">
+      <button @click="toggleLembreteShow">mostrar teleport</button>
       <div class="popup-content">
-          <div class="filters">
+          <div>
             <div>
-                <input type="text" placeholder="Pesquisar..." class="form-control" @keyup="notaSearchLocalStorage()" id="searchInputNota">
+                <input type="text" placeholder="Pesquisar..." class="form-control" @keyup="lembreteSearchLocalStorage()" id="searchInputLembretes">
             </div>
-              <div class="filters" @click="filtrarTipoNota()">
+              <div class="filters" @click="filtrarTipoLembretes()">
                   <label for="note-type">Tipo:</label>
-                  <select class="filter-tipo">
+                  <select class="filter-tipo" @change="lembreteSearchLocalStorage()">
                       <option value="todos">Todos</option>
                       <option value="grupo">Nota do Grupo</option>
                       <option value="individual">Nota Individual</option>
                   </select>
               </div>
-              <!-- <div class="filters">
-                  <label for="note-type">Ordenar:</label>
-                  <select class="filter-tipo" id="select-order" @change="notaSearchLocalStorage()">
-                      <option value="todos">Todos</option>
-                      <option value="Data">Data de criação</option>
-                      <option value="Título">Tipo de status</option>
-                  </select>
-              </div> -->
           </div>
-          <!-- <button class="add-note-btn" id="button-nota" @click="ouvirClick()">+ Adicionar Nota</button> -->
-          <div class="note-card list-container-chatbot-notas">
+          <div class="note-card list-container-chatbot">
               <div id="div-resposta" class="user-item note-card-header d-flex justify-content-between flex-column">
               </div>
           </div>
       </div>
     </section>
-
-  <!-- Modal para Adicionar Nota -->
-       <div class="modal fade show" v-if="notaShowCadastro" tabindex="-1" role="dialog">
+    <!-- Modal para adicionar lembrete -->
+       <Teleport to="#modals">
+        <div class="modal fade show" v-if="lembreteShowCadastro" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content bg-dark">
                     <div class="modal-header">
-                    <h5 id="notaModalLabel">Adicione Nota</h5>
+                    <h5 id="lembreteModalLabel">Adicione Lembrete</h5>
                     </div>
                     <div class="modal-body d-flex justify-content-center align-items-center">
-                        <div id="div-nota-modal">
+                        <div id="div-lembrete-modal">
                             <div>
                                 <div>
                                 <div>
-                                    <form id="notaForm">
+                                    <form id="lembreteForm">
                                         <div class="form-group">
-                                            <label for="titulo-notas">Selecionar bate-papo</label>
-                                            <select class="form-control" id="titulo-notas" @change="contatosListarInput('nota')">
+                                            <label for="opcao-lembrete-bate-papo">Selecionar bate-papo</label>
+                                            <select class="form-control" id="opcao-lembrete-bate-papo" @click="contatosListarInput('lembrete')">
                                                 <option>Selecione um bate-papo</option>
                                                 <!-- As opções serão preenchidas aqui -->
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                          <label for="opcao-nota-tipo">Selecionar Tipo</label>
-                                            <select class="form-control" id="opcao-nota-tipo">
+                                          <label for="opcao-lembrete-tipo">Selecionar Tipo</label>
+                                            <select class="form-control" id="opcao-lembrete-tipo">
                                                 <option>grupo</option>
                                                 <option>individual</option>
                                                 <!-- As opções serão preenchidas aqui -->
                                             </select>
                                         </div>
                                     <div class="form-group">
-                                        <label for="notas-input">Assunto</label>
-                                        <input type="text" class="form-control" id="notas-input" maxlength="70" required>
-                                        <small id="assuntoHelp" class="notas-form-text text-muted">Título *</small>
+                                        <label for="assunto">Assunto</label>
+                                        <input type="text" class="form-control" id="assunto" maxlength="70" required>
+                                        <small id="assuntoHelp" class="form-text text-muted">Por favor, digite o tamanho máximo do assunto deve ser 70.</small>
                                     </div>
                                     <div class="form-group">
-                                        <label for="opcao-notas">Notas *</label>
-                                        <input type="text"  class="form-control" id="opcao-notas" placeholder="Notas" rows="3" required />
+                                        <label for="descricao">Descrição (opcional)</label>
+                                        <textarea class="form-control" id="descricao" rows="3"></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label for="opcao-notas-name">Data e hora</label>
-                                        <input class="form-control" id="opcao-notas-name" placeholder="Data e hora" rows="3" required />
+                                        <label for="dataHora">Data e hora</label>
+                                        <input type="datetime-local" class="form-control" id="dataHora" required>
                                     </div>
                                     
                                     </form>
@@ -502,9 +359,11 @@ button:hover {
                     </div>
                     <div class="modal-footer">
                     <button type="button" @click="cancelCadastro" class="btn btn-danger">Cancelar</button>
-                    <button type="button" class="btn notas-btn-primary" @click="agendarNota">Salvar Nota</button>
+                    <button type="button" class="btn btn-primary" @click="agendarLembrete">Salvar Lembrete</button>
                     </div>
                 </div>
             </div>
         </div>
+    </Teleport>
 </template>
+
